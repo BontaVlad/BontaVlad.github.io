@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Hello world"
-date: 2014-01-08 12:00:00
+date: 2015-04-29 12:00:00
 categories: jekyll
-featured_image: /images/cover.jpg
+# featured_image: http://www.meh.ro/wp-content/uploads/2015/04/meh.ro11941.jpg
+featured_image: http://www.meh.ro/wp-content/uploads/2014/10/meh.ro11797.jpg
 ---
 
 A short description. More info will come soon enough.
