@@ -1,0 +1,8 @@
+---
+    name: "strange_case"
+    website: "https://github.com/thephuse/strange_case"
+    description: "A port for jekyllbootstrap_port of the cool theme strange_case"
+    author:
+        name: "Bonta Vlad"
+        email: "bonta.vlad@gmail.com"
+        website: "http://bontavlad.github.io"
