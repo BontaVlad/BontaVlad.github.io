@@ -4,7 +4,7 @@ title: "Hello world"
 date: 2015-04-29 12:00:00
 categories: jekyll
 # featured_image: http://www.meh.ro/wp-content/uploads/2015/04/meh.ro11941.jpg
-featured_image: http://www.meh.ro/wp-content/uploads/2014/10/meh.ro11797.jpg
+featured_image: http://i.imgur.com/y2X5837.jpg?1
 ---
 
 A short description. More info will come soon enough.
@@ -16,12 +16,6 @@ Stevenson had long been intrigued by the idea of how personalities can affect a 
 > "In the small hours of one morning, I was awakened by cries of horror from Louis. Thinking he had a nightmare, I awakened him. He said angrily: 'Why did you wake me? I was dreaming a fine bogey tale.' I had awakened him at the first transformation scene."
 
 ## Main Characters
-
-{% highlight ruby %}
-def foo
-  puts 'foo'
-end
-{% endhighlight %}
 
 The story revolves around **8 main characters**:
 
