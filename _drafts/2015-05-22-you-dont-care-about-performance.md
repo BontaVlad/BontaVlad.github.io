@@ -68,6 +68,7 @@ Enough with the general stuff, let's bring it more to home and talk about python
 profiling.
 
 Why do we profile python?
+------------------------
 
 Because (and it hurts by heart to say this) cPython is slow. Python is a
 beautiful language, but the rumor that is spread around by jelaous Java
@@ -80,9 +81,55 @@ entire program to use a better suited algorith for the job.
 
 So until then we profile.
 
-So next logical question is: Why not profile everything?
+So next logical question is:
+
+Why not profile everything?
+--------------------------
+
+    # Fast code is expensive
 
 Whel, this is exacly what the wizards of yesterday did, they wrote code in which
-every cpu cycle matters, every piece of memory counts, controll everything. they
-had no other way.
+every cpu cycle matters, every piece of memory counts, controll everything was
+the name of the game. They had no other way.
+
+But this level of care come at a cost, fast code is expensive, it takes effort
+to write (good) fast code. It needs better algorithms, deep research into
+approaches, diligent and focused effort.
+
+    # Fast code is hard to maintain
+
+Smart code intrudoces caches, lazyloading, parallelization, assumptions and
+requirements.
+
+Much smarted code gets you to "meta-programming obscure", code where nothing
+you write is the code that runs.
+
+Sure it's fast, but it is extremly slow to write, and slow to maintain.
+
+We need fast but maintainable code, so we give up right?
+
+No, we profile, and we do it in a analytical fashion, we do "Inteligent
+optimization"
+
+Obligatory Quote
+
+>"We should forget about small efficiencies, say about 97% of the time:
+>premature optimization is the root of all evil.
+>Yet we should not pass up our opportunities in that critical 3%" -Knuth
+
+So we mess up only a smal portion of the codebase, while preserving the elegante
+of the whole.
+(?) maintain nice flexibility and we ugly just the important 3% (?)
+
+Why not guess? "I really understant my code":
+well probably you do, and probably most of the time you do a good job
+but you are taking a bet with 1 in 33 chance of guessing right. Better to look
+first.
+
+How? Well this is the end of part 1.
+
+TODO: TO be continuated
+
+
+
 
