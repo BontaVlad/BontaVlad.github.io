@@ -1,0 +1,33 @@
+name: Emaad Ahmed Manzoor
+description: Blog of Emaad Ahmed Manzoor
+url: "http://eyeshalfclosed.com"
+
+# Author info
+author_name: Emaad Ahmed Manzoor
+author_image_path: /images/author-image.jpeg
+author_bio: |
+    Masters student at <a href=http://www.kaust.edu.sa/>KAUST</a>.
+    Formerly, software engineer at Yahoo!,
+    undergrad at <a href=http://www.bits-pilani.ac.in/Goa/>BITS Pilani Goa Campus</a>.
+
+# External services
+github_url: "https://github.com/emaadmanzoor"
+twitter_url: "https://twitter.com/emaadmanzoor"
+linkedin_url: "https://linkedin.com/in/emaadmanzoor"
+feed_url: "http://feeds.feedburner.com/eyeshalfclosed"
+email: "emaadmanzoor@gmail.com"
+
+# Markdown rendering
+markdown: kramdown
+kramdown:
+  smart_quotes: apos,apos,quot,quot
+  parse_block_html: true
+
+# Site settings
+permalink: /blog/:year/:month/:day/:title/
+relative_permalinks: false
+highlighter: pygments
+
+# important since the site is compiled
+# on Github's servers
+timezone: Asia/Riyadh

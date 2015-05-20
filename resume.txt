@@ -1,0 +1,57 @@
+Emaad Ahmed Manzoor
+
+4700 King Abdullah University of Science and Technology
+Thuwal 23955-6900, Saudi Arabia
+emaadahmed.manzoor@kaust.edu.sa
+(+966) 54 9148275
+eyeshalfclosed.com
+
+Education
+
+   * King Abdullah University of Science and Technology
+   - Aug 2013 - Aug 2015 (expected)
+   - Master of Science, Computer Science
+   - CGPA: 3.95 / 4.00
+   - Thesis: Broadcast scheduling in social networks
+
+   * Birla Institute of Technology and Science - Pilani
+   - Aug 2008 - May 2012
+   - Bachelor of Engineering (Honours), Computer Science
+   - CGPA: 8.17 / 10.00
+
+Work Experience
+
+   * Oregon State University, Corvallis. Google Summer of Code Intern. May – Aug, 2014
+   - Designed and developed a REST API and command-line interface facilitating infrastructure-wide IPMI management of data centre machines.
+
+   * Yahoo!, Bangalore. Software Engineer. Jul 2012 – Aug 2013
+   - Built a distributed system for low-latency event detection from newswire, Twitter, and the Yahoo! Search streams.
+
+   * Tachyon Technologies, Bangalore. Research Intern. May – July, 2012
+   - Designed computer vision algorithms to de-warp photographs, optimisation algorithms to correct colours and extract comic panels, and built an Android application prototype. Advised by CEO and MIT TR35 awardee Ram Prakash Hanumanthappa.
+
+   * Yahoo!, Bangalore. Software Engineer Intern. Jul – Dec, 2011
+   - Extended the event-detection system to be centrally configurable and multithreaded. Implemented a research prototype to detect search trends that are niche to certain geographic areas.
+
+   * University of Massachusetts, Lowell. MVHub Summer of Code Intern. Jun – Sep, 2011
+   - Built a Debian package for MVHub, a directory of non-profit services maintained by the Community Software Lab at the University of Massachusetts, Lowell.
+
+Awards
+
+   * Best Mashery Hack, PennApps X, Philadelphia (sponsored by Intel). - 2014
+   * International Travel Grant, PennApps X, Philadelphia (sponsored by PennApps). - 2014
+   * King Abdullah University of Science and Technology Fellowship. 2013 Erasmus Mundus LCT Masters Scholarship (awarded to 4 international applicants). - 2013
+   * Winner, Random Hacks of Kindness, Bangalore. - 2011
+   * Consultancy Development Cell Fellowship, Ministry of Science and Technology of India. - 2009
+
+Research Experience
+
+   * Scheduling Broadcasts in a Network of Timelines January 2014 – Now
+   - Advised by Prof. Panos Kalnis, InfoCloud Research Group, KAUST. (cloud.kaust.edu.sa)
+   - Quantifying monotony aversion, bursty circadian rhythms and designing algorithms to schedule broad- casts in a social network with chronological timelines, to maximize the average daily organic reach.
+
+   * Detecting Malware Android Applications Aug – Dec, 2013
+   - Advised by Dr. Xiangliang Zhang, MINE Lab, KAUST. (mine.kaust.edu.sa)
+   - Applied graphical models from natural language processing to an Android permission dataset to reduce dimensionality in an interpretable manner. Evaluated its performance on a malware classification task.
+
+Programming Languages: Java (preferred), Python, C.
