@@ -1,1 +1,0 @@
----layout: posttitle: You don't care about performancetags: python performance---Will see
