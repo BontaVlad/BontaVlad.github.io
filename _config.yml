@@ -1,21 +1,18 @@
-name: Emaad Ahmed Manzoor
-description: Blog of Emaad Ahmed Manzoor
-url: "http://eyeshalfclosed.com"
+name: Bonta Sergiu Vlad
+description: Blog of Bonta Sergiu Vlad
+url: "http://bontavlad.github.com"
 
 # Author info
-author_name: Emaad Ahmed Manzoor
-author_image_path: /images/author-image.jpeg
+author_name: Bonta Sergiu Vlad
+author_image_path: http://i.imgur.com/8l6BRlt.jpg
 author_bio: |
-    Masters student at <a href=http://www.kaust.edu.sa/>KAUST</a>.
-    Formerly, software engineer at Yahoo!,
-    undergrad at <a href=http://www.bits-pilani.ac.in/Goa/>BITS Pilani Goa Campus</a>.
+    Python developer
 
 # External services
-github_url: "https://github.com/emaadmanzoor"
-twitter_url: "https://twitter.com/emaadmanzoor"
-linkedin_url: "https://linkedin.com/in/emaadmanzoor"
-feed_url: "http://feeds.feedburner.com/eyeshalfclosed"
-email: "emaadmanzoor@gmail.com"
+github_url: "https://github.com/bontavlad"
+linkedin_url: "https://ro.linkedin.com/pub/bonta-vlad/86/2b5/343"
+feed_url: ""
+email: "bonta.vlad@gmail.com"
 
 # Markdown rendering
 markdown: kramdown
