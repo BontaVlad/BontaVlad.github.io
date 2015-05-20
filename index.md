@@ -1,5 +1,6 @@
 ---
 layout: page
+title: Home sweet home
 homepage: True
 permalink: /
 ---
