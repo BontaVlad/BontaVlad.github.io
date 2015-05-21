@@ -4,7 +4,8 @@ title: You don't care about performance
 tags: python performance
 ---
 
-TODO: add description
+My take on python profiling, definitions, motives, tools, cavesets and a hands
+on approach to profile a fictive car part shop.
 
 ---
 
@@ -26,13 +27,12 @@ Profiling is a **complex** topic, so my take on this is to split it in two
 parts:
 
 - [**Part one**](#part1) will be a superficial quick and general introduction to
-profiling python, no pryor knoledge required just to make sure that we are on
-the same page<sup>[1](#f1)</sup>.
+profiling python, no pryor knoledge required<sup>[1](#f1)</sup>, I just want to make sure that we are on
+the same page.
 
-- [**Part two**](#part2) is where we get our hand dirty and simulate a workflow of profiling a
-application. This part will require from you some advance topics but still it
-has some value, at least from an academic point of view.
-
+- [**Part two**](#part2) is where we get our hands dirty and simulate a workflow of profiling a
+application. This part will require from you some advance topics, but fear not,
+still accessible to most of the readers out there.
 
 ##<a id="part1" href="#part1">Part 1</a>
 
@@ -52,64 +52,60 @@ According to wikipedia:
 
 The short version is: profiling allows you to see where you are
 spending your time, it allows you to optimize your code in a intelligent
-fashion, runs almost exactly the same code as in production. You can
+fashion, runs **almost** exactly the same code as in production. You can
 easly<sup>[3](#f3)</sup> track entry/exit times for functions and helps you
 build the bigger picture about the application.
 
-(?) Here is a basic profiler in python:
-        t = time.time()
-        try:
-            function()
-        finally:
-            delta = time.time()
-(?)
+**TD;LR;**
 
-Enough with the general stuff, let's bring it more to home and talk about python
-profiling.
+- How much of resource X<sup>[4](#f4)</sup> is used?
+- How exactly this amount of X is spent?
+- Looking for bottlenecks
 
 Why do we profile python?
 ------------------------
 
-Because (and it hurts by heart to say this) cPython is slow. Python is a
-beautiful language, but the rumor that is spread around by jealous Java
-programmers is sadly true. So why not make python faster?, that is exactly
-what PyPy(link) is trying to do, PyPy is a automated, runtime,
-profile-driven optimization a.k.a. JIT compiler, not a trivial problem by the
-way, problem which requires a lot of time and money, stuff that PyPy needs the
-most. Still, computers still aren't powerful enough to restructure your
+Because (and it hurts by heart to say this) **cPython** is slow. Python is a
+beautiful language, but the rumor spread around by jealous Java
+programmers is sadly true.
+
+So why not make Python faster?
+
+Well, that is exactly what [PyPy](http://pypy.org/) is trying to do.
+
+PyPy is a automated, runtime, profile-driven optimization a.k.a. JIT compiler,
+because PyPy tries to tackle a non-trivial problem we are not quite there yet.
+Even so, at the moment, computers still aren't powerful enough to restructure your
 entire program to use a better suited algorithm for the job.
 
 So until then we profile.
-
-So next logical question is:
 
 Why not optimize everything?
 --------------------------
 
 >Fast code is expensive
 
-Well, this is exactly what the wizards of yesterday did, they wrote code in which
-every cpu cycle matters, every piece of memory counts, controll everything was
+Well, this is exactly what the *wizards* of yesterday did, they wrote code in which
+every cpu cycle, every piece of memory mattered, *controll everything* was
 the name of the game. They had no other way.
 
-But this level of care come at a cost, fast code is expensive, it takes effort
-to write (good) fast code. It needs better algorithms, deep research into
+But this level of care come at a cost, fast code is expensive because it takes effort
+to write (*good*) fast code. It needs better algorithms, deep research into
 approaches, diligent and focused effort.
 
-    # Fast code is hard to maintain
+>Fast code is hard to maintain
 
-Smart code introduces caches, lazy loading, parallelization, assumptions and
-requirements.
+Smart code introduces *caches*, *lazy loading*, *parallelization*, *assumptions* and
+*requirements*.
 
-Much smarter code gets you to "meta-programming obscure", code where nothing
+Much smarter code gets you to *"meta-programming obscure"*, code where nothing
 you write is the code that runs.
 
 Sure it's fast, but it is extremely slow to write, and slow to maintain.
 
 We need fast but maintainable code, so we give up right?
 
-No, we profile, and we do it in an analytical fashion, we do "Intelligent
-optimization"
+**No**, we do *"Intelligent optimization"*.
 
 Obligatory Quote
 
@@ -117,16 +113,21 @@ Obligatory Quote
 >premature optimization is the root of all evil.
 >Yet we should not pass up our opportunities in that critical 3%" -Knuth
 
-So we mess up only a small portion of the codebase, while preserving the elegante
-of the whole.
-(?) maintain nice flexibility and we ugly just the important 3% (?)
+The trick here is to mess up only a small portion of the codebase,
+while preserving the elegance of the whole.
+Maintain nice flexibility and we ugly just the important 3%.
 
-Why not guess? "I really understand my code":
-well probably you do, and probably most of the time you do a good job
+How to find the 3%
+------------------
+
+>Why not guess? "I really understand my code"
+
+Well probably you do, and probably most of the time you do a good job
 but you are taking a bet with 1 in 33 chance of guessing right. Better to look
 first.
 
 How? Well this is the end of part 1.
+
 
 --------
 
@@ -137,3 +138,4 @@ How? Well this is the end of part 1.
 satisfies some conditions, usually given in the
 code specifications.*</p>
 <p id="f3">[3] *well ussually not that easly but you get the point*</p>
+<p id="f4">[4] *X can be CPU time, RAM, I/O, power*</p>
