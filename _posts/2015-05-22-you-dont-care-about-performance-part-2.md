@@ -138,6 +138,10 @@ snakeviz get_parts_list.prof
 ### Method Level picture
 
 ##### line_profiler
+##### pprofile
+{% highlight bash %}
+$ pprofile --out cachegrind.out.threads demo/threads.py
+{% endhighlight %}
 
 
 
