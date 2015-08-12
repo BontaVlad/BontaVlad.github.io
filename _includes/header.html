@@ -1,14 +1,19 @@
 <div class=author-info>
-    <img src="{{ site.author_image_path }}" class=author-image />
-    <h1 class=author-name><a href=/>{{ site.author_name }}</a></h1>
+    <h1 class=author-name>
+        <a href=/>
+            <img src="{{ site.author_image_path }}" class=author-image />
+            <br/>
+            {{ site.author_name }}</a>
+    </h1>
     <div class=nav>
         <a href="{{ site.github_url }}"><i class=icon-github-alt></i></a>
         <a href="{{ site.linkedin_url }}"><i class=icon-linkedin></a></i>
+            <a href="mailto:{{ site.email }}"><i class="icon-envelope"></i></a></i>
     </div>
     <div class=home-nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/resume/">Resume</a></li>
         </ul>
     </div>
 </div>

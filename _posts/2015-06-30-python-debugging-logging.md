@@ -73,11 +73,22 @@ RuntimeError: xxx
 This is a very simple stack trace. If we start at the end of the list we can see where our error happend.
 But this could be misleading because the location where we cauth the error might be different from the location where it originated.
 
+1. Errors
+2. Error paths
+3. Async Paths
+
 Stage 2: Debugging
 ----------------
 >Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
 <br>
->Brian W. Kernighan (Canadian computer scientist, co-author of C programming language)
+>Brian W. Kernighano (Canadian computer scientist, co-author of C programming language)
+
+The scientific method goes something like this:
+
+1. Identify the behavior you want to explain.
+2. Form a hypothesis that might explain that behavior.
+3. Conduct an experiment that tests the hypothesis.
+4. If the experiment contradicts the hypothesis, revise it or replace it with a new hypothesis and go back to step 3.
 
 Stage 3: Python disassemble dis
 ------------------------------
@@ -89,7 +100,7 @@ Here at spyhce we had a recent discussion about cPython PyPy and Java and we rea
 Since we are on the subject, let's clear some misinformation about this obscure subject.
 I must mention, we are going to examine CPython interpreter bytecode limited to version 2.7, there are some differences between versions but the big ideas should hold.
 
-We should spend a minute talking about what it means for a python program to be compiled since python is an intepreted language, (most languages that people think are not compiled are acctually have a compilation step just that the compiler does less and the interpretter is left with most of the work).
+We should spend a minute talking about what it means for a python program to be compiled since python is an intepreted language, (most languages that people think are not compiled, acctually have a compilation step just that the compiler does less and the interpretter is left with most of the work).
 So python gets compiled to bytecode and the resulting bytecode(intermediary interpretation) is fed to the interpreter one instruction at a time.
 
 {% highlight python %}
@@ -136,7 +147,7 @@ dis.dis(mod)
 And the bytecode in all it's splendor:
 {% highlight python %}
   3         0   LOAD_FAST               0 (a)
-          3   LOAD_FAST               1 (b)
+          3   LOAD_FAST    Z           1 (b)
           6   BINARY_MODULO
           7   STORE_FAST              2 (ans)
 
