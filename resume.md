@@ -55,8 +55,6 @@ permalink: /resume/
 
 #Experience
 
-<br/>
-
 ###Spyhce
 *March 2014 – Present (1 year 6 months) | Cluj County, Romania*
 <br/>
