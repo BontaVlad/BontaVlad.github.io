@@ -69,4 +69,3 @@ With Spyhce, I am part of a team of developers and designers that specializes in
 --------------------------
 
 June 2015 - Bachelor of Computer Science
-
