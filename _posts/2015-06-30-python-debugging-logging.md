@@ -15,18 +15,20 @@ Contents
 --------
 
 * *Stage 1*: **Stack Trace** (the who, the what, the why)
-* *Stage 2*: **Debugging** (tehniques and tools, jk only print)
+* *Stage 2*: **Debugging** (techniques and tools, jk only print)
 * *Stage 3*: **Python disassembler dis** (just because!!)
 * *Stage 4*: **Logs**: creation/analysis (pretty pictures, I promise)
 
 Stage 1: Stack Trace
 -------------------
+<img src="http://i.imgur.com/SrmsqoQ.jpg">
+
 >If debugging is the process of removing software bugs, then programming must be the process of putting them in.
 <br>
 >Edsger Dijkstra (Dutch computer scientist, winner of the 1972 Turing Award)
 
 If you ever wrote a line of code you most likely encountered a stack trace, event without knowing the exact name.
-In simple terms, a stack trace is a list of method calls that the application was in the midle of when an Exception was thrown.
+In simple terms, a stack trace is a list of method calls that the application was in the middle of when an Exception was thrown.
 
 ###Simple Example
 In the following example an Exception was raised, by analyzing the stack trace we can determine where the Exception was thrown and possibly make an assumption abount what caused it.
@@ -70,8 +72,8 @@ Traceback (most recent call last):
 RuntimeError: xxx
 {% endhighlight %}
 
-This is a very simple stack trace. If we start at the end of the list we can see where our error happend.
-But this could be misleading because the location where we cauth the error might be different from the location where it originated.
+This is a very simple stack trace. If we start at the end of the list we can see where our error happened.
+But this could be misleading because the location where we cause the error might be different from the location where it originated.
 
 1. Errors
 2. Error paths
@@ -79,6 +81,8 @@ But this could be misleading because the location where we cauth the error might
 
 Stage 2: Debugging
 ----------------
+<img src="http://i.imgur.com/vYALboG.jpg">
+
 >Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
 <br>
 >Brian W. Kernighano (Canadian computer scientist, co-author of C programming language)
@@ -92,6 +96,8 @@ The scientific method goes something like this:
 
 Stage 3: Python disassemble dis
 ------------------------------
+<img src="http://i.imgur.com/gFTx08h.jpg">
+
 >Programming is like sex. One mistake and you have to support it for the rest of your life.
 <br>
 >Michael Sinz
@@ -124,7 +130,7 @@ By running this we get this beauty
 '|\x00\x00|\x01\x00\x16}\x02\x00|\x02\x00S'
 {% endhighlight %}
 
-The bytecode is a series of bytes, so it looks wierd here because some are printable and some are not.
+The bytecode is a series of bytes, so it looks weird here because some are printable and some are not.
 
 We can make it a little better by looking at the ordinals for the printable and non-printable values
 
@@ -137,9 +143,9 @@ Here is the *better* version
 [124, 0, 0, 124, 1, 0, 22, 125, 2, 0, 124, 2, 0, 83]
 {% endhighlight %}
 
-We finally arived at the magical **dis**. Dis is a bytecode disassembler which is included in python's standard library.
-You want a disassembler any time you have assmbly or low level code and you want to make it readable.
-You will rearly see dis used in production but it's interesting to peek into python's internals.
+We finally arrived at the magical **dis**. Dis is a bytecode disassembler which is included in python's standard library.
+You want a disassembler any time you have assembly or low level code and you want to make it readable.
+You will rarely see dis used in production but it's interesting to peek into python's internals.
 {% highlight python %}
 import dis
 dis.dis(mod)
@@ -147,11 +153,11 @@ dis.dis(mod)
 And the bytecode in all it's splendor:
 {% highlight python %}
   3         0   LOAD_FAST               0 (a)
-          3   LOAD_FAST    Z           1 (b)
+          3   LOAD_FAST    Z          1 (b)
           6   BINARY_MODULO
           7   STORE_FAST              2 (ans)
 
-4         10  LOAD_FAST               2 (ans
+4         10  LOAD_FAST               2 (ans)
           13  RETURN_VALUE
 #[1]      [2]   [3]                  [4] [5]
 
@@ -194,12 +200,49 @@ http://unpyc.sourceforge.net/Opcodes.html
 souce codes for opcodes https://github.com/python/cpython/blob/master/Python/ceval.c
 Dedicated lib: https://github.com/neuroo/equip
 
-Stage 4: Logs
+Stage 4: Logs (ELK stack)
 ------------------------------
+<img src="http://i.imgur.com/NTmBLR1.jpg">
+
 >If builders built buildings the way programmers wrote programs, then the first woodpecker that came along wound destroy civilization.
 <br>
 >Gerald Weinberg (American computer scientist)
 
-logstash
-elasticsearch
-kibana
+###What is a log?
+
+A log is the human readable, **machine parsable** representation of an event.
+
+*Here you have a tipical apache server log entries:*
+{% highlight bash %}
+64.242.88.10 - - [07/Mar/2004:16:05:49 -0800] "GET /twiki/bin/edit/Main/Double_bounce_sender?topicparent=Main.ConfigurationVariables HTTP/1.1" 401 12846
+64.242.88.10 - - [07/Mar/2004:16:06:51 -0800] "GET /twiki/bin/rdiff/TWiki/NewUserTemplate?rev1=1.3&rev2=1.2 HTTP/1.1" 200 4523
+64.242.88.10 - - [07/Mar/2004:16:10:02 -0800] "GET /mailman/listinfo/hsdivision HTTP/1.1" 200 6291
+{% endhighlight %}
+
+All comes down to this: LOG = TIMESTAMP + DATA
+
+###What can you do with a log?
+
+- Debugging
+- Analytics
+- Fraud detection
+- Find abusive hot linking
+- ...
+
+###How can I read a log?
+Opening it manually is difficult and error prone, disadvantage: can be only from
+one source at a time
+Huge files become impossible to handle.
+
+###Remember the machine parsable part?
+use grep: again single source, error prone, cryptic.
+use logstash
+
+###Meet Logstash
+
+- Free as in beer
+- Open source
+- Written in Ruby(jRuby for performance)
+- Extensible - Easy to extend with custom plugins
+
+###But wait, theres more
