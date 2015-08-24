@@ -17,7 +17,7 @@ Contents
 * *Stage 1*: **Stack Trace** (the who, the what, the why)
 * *Stage 2*: **Debugging** (techniques and tools, jk only print)
 * *Stage 3*: **Python disassembler dis** (just because!!)
-* *Stage 4*: **Logs**: creation/analysis (pretty pictures, I promise)
+* *Stage 4*: **Logfiles**: creation/analysis (pretty pictures, I promise)
 
 Stage 1: Stack Trace
 -------------------
@@ -200,7 +200,7 @@ http://unpyc.sourceforge.net/Opcodes.html
 souce codes for opcodes https://github.com/python/cpython/blob/master/Python/ceval.c
 Dedicated lib: https://github.com/neuroo/equip
 
-Stage 4: Logs (ELK stack)
+Stage 4: Logfiles (ELK stack)
 ------------------------------
 <img src="http://i.imgur.com/NTmBLR1.jpg">
 
@@ -208,9 +208,9 @@ Stage 4: Logs (ELK stack)
 <br>
 >Gerald Weinberg (American computer scientist)
 
-###What is a log?
+###What is a logfile?
 
-A log is the human readable, **machine parsable** representation of an event.
+A logfile is the human readable, **machine parsable** representation of an event.
 
 *Here you have a tipical apache server log entries:*
 {% highlight bash %}
@@ -219,9 +219,9 @@ A log is the human readable, **machine parsable** representation of an event.
 64.242.88.10 - - [07/Mar/2004:16:10:02 -0800] "GET /mailman/listinfo/hsdivision HTTP/1.1" 200 6291
 {% endhighlight %}
 
-All comes down to this: LOG = TIMESTAMP + DATA
+All comes down to this: LOGFILE = TIMESTAMP + DATA
 
-###What can you do with a log?
+###What can you do with a logfile?
 
 - Debugging
 - Analytics
@@ -229,20 +229,35 @@ All comes down to this: LOG = TIMESTAMP + DATA
 - Find abusive hot linking
 - ...
 
-###How can I read a log?
+###How can I read a logfile?
 Opening it manually is difficult and error prone, disadvantage: can be only from
 one source at a time
 Huge files become impossible to handle.
 
 ###Remember the machine parsable part?
 use grep: again single source, error prone, cryptic.
-use logstash
+better methods stay tuned
 
-###Meet Logstash
+###Meet ELS stack family
 
-- Free as in beer
-- Open source
-- Written in Ruby(jRuby for performance)
-- Extensible - Easy to extend with custom plugins
+**Logstash - Collect, Enrich & Transport Data**
 
-###But wait, theres more
+- Centralize data processing of all types
+- Normalize varying schema and formats
+- Quickly extend to custom log formats
+- Easily add plugins for custom data sources
+
+Here is a example of a ELS stack(some components may differ for you're setup)
+<img src="http://i.imgur.com/2IxFtOH.png">
+
+**Elasticsearch - Search & Analyze Data in Real Time**
+
+- Distributed, scalable
+- Real-time search and analytics capabilities
+
+**Kibana - Explore & Visualize Your Data**
+
+- Flexible analytics and visualization platform
+- Real-time summary and charting of streaming data
+- Intuitive interface for a variety of users
+- Instant sharing and embedding of dashboards
