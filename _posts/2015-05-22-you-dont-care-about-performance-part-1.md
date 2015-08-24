@@ -8,6 +8,7 @@ My take on python profiling, definitions, motives, tools, cavesets and a hands
 on approach to profile a fictive car part shop.
 
 ---
+<img src="http://i.imgur.com/Yx9GP2R.jpg">
 
 You **don't** care about performance, before you rant at me and include my mother
 in the conversation, answer some of these following questions:
