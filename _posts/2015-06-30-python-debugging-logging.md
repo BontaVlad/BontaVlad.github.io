@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python debugging and logging
+title: Python debugging and logging (WIP)
 tags: debugging python logging
 ---
 The world is great when everything goes according to plan, but as we all know, bad things are just around the corner.
@@ -240,6 +240,16 @@ better methods stay tuned
 
 ###Meet ELS stack family
 
+Here is a example of a ELS stack(some components may differ for you're setup)
+<img src="http://i.imgur.com/2IxFtOH.png">
+
+Breakout:
+
+**Redis - Data structured server, key-value cache & store**
+
+- Acts as a buffer
+- Can act as a fail safe system
+
 **Logstash - Collect, Enrich & Transport Data**
 
 - Centralize data processing of all types
@@ -247,8 +257,8 @@ better methods stay tuned
 - Quickly extend to custom log formats
 - Easily add plugins for custom data sources
 
-Here is a example of a ELS stack(some components may differ for you're setup)
-<img src="http://i.imgur.com/2IxFtOH.png">
+Logstash isn't terribly useful if you're only using it on a single node, we use shippers
+
 
 **Elasticsearch - Search & Analyze Data in Real Time**
 
