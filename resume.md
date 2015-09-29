@@ -66,7 +66,12 @@ With Spyhce, I am part of a team of developers and designers that specializes in
 
 #Education
 
+### Technical University of Cluj-Napoca
+--------------------------
+
+2008 - 2012 - Bachelor of Civil Engineering
+
 ###Babeș-Bolyai University
 --------------------------
 
-June 2015 - Bachelor of Computer Science
+2012 - 2015 - Bachelor of Computer Science
