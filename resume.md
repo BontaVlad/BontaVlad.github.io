@@ -30,6 +30,7 @@ permalink: /resume/
 ------------
 
 - Django, Django Rest framework, Allauth
+- Ionic, Cordova
 - Logstash, Kibana
 - Nose, Markdown
 
