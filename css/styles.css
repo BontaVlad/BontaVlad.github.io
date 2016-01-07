@@ -297,6 +297,11 @@ p.feature-image img {
     list-style-type: none;
 }
 
+.resume-print {
+    margin-left: 1em;
+    font-size: 0.6em;
+}
+
 @media (max-width: 767px) {
     .container {
         margin: 3em 0;
