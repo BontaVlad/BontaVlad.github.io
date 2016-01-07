@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Resume <a href="javascript:window.print()"><i class="resume-print icon-print"></i></a>
+title: Resume
 permalink: /resume/
 ---
 
 <br/>
 
-#Skills
+#Skills <a href="javascript:window.print()"><i class="resume-print icon-print"></i></a>
 
 ###Tools
 --------
