@@ -12,6 +12,8 @@ Grab some popcorn and enjoy.
 
 ---
 
+<img src="http://i.imgur.com/hxeZDnh.jpg">
+
 ####Terminal
 Just any modern terminal will suffice, just make sure it supports 256 colors. I
 personally use Gnome terminal but that is because I found it has sane defaults
@@ -76,6 +78,7 @@ everthing just works but this time faster. A must have tool for me.
 > hf is a command line utility to quickly find files and execute a command -
 > something like Helm/Anything/CtrlP for the terminal. It tries to find the best
 > match, like other fuzzy finders (Sublime, ido, Helm).
+
 This is what README will tell you, I mostly use it for git add, quicly rm a file
 or simply quick open it for editing. I see a lot of potential here but I always
 fall back to old habits(shame shame).
@@ -89,6 +92,10 @@ verry quicly.
 ####Vagrant
 
 ####Mosh
+
+####Meld
+
+####Gitg
 
 TODO:
 
