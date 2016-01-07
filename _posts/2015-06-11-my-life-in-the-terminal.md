@@ -90,8 +90,26 @@ want to show the file structure in a README, sound simple but comes verry handy
 verry quicly.
 
 ####Vagrant
+Create and configure lightweight, reproducible, and portable development
+enviroments.
+A pain in the ass, but that is because I never took the time to really
+undestrant the configuration. The selling point is that you have all youre
+project dependencies isolated, the bad thing is that it takes a lot of space and
+if you manage several projects, size can get out of hand verry quicly, but at
+the same time if you want to work on a project ``vagrant up`` and you are
+golden.
 
 ####Mosh
+Remote terminal application that allows roaming, supports intermittent
+connectivity, and provides intelligent local echo and line editing of user keystrokes.
+
+Mosh is a replacement for SSH. It's more robust and responsive,
+especially over Wi-Fi, cellular, and long-distance links.
+
+I use mosh on low quality connections, either huge lag or connections that keep
+dropping, the bad part is that it requires mosh to be installed also on the
+server and that is not always possible(most of the time). Works great when it
+works but I have fewer chances to use it.
 
 ####Meld
 
