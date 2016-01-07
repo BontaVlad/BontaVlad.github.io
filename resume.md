@@ -13,16 +13,26 @@ permalink: /resume/
 
 - Neovim, Tmux, Unix shell environments
 - Git, Github, Bitbucket
-- Linux, Windows
+- GNU/Linux, Windows
+- Dvorak keyboard layout
 
 <br/>
 
-###Languages
+###Programming Languages
 ------------
 
 - Great with Python, Javascript, HTML, CSS/Sass, SQL
 - Can operate in Bash, Java, C#
 - Basic knowledge of Erlang, Elixir, Rust, Go
+
+<br/>
+
+###Spoken Languages
+------------
+
+- Romanian (Native)
+- English (Great)
+- German (Basic)
 
 <br/>
 
@@ -70,8 +80,8 @@ and **javascript**(AngularJs, Jquery).
 * ####Moody365
 > Social media application with the mission of providing it's users with a day
 > by day snapshot of photos, interactions, activities made.
-> Was involved in the project from the begining, responsible(with another coleague)
-> for backend work, front-end work, arhitecture.
+> Was involved in the project from the beginning, responsible(with another colleague)
+> for back end work, front-end work, architecture.
 <br/>
 > **Worked with: Agile, Django, All-Auth, Rest-framework, Redis, AngularJs**
 
@@ -82,16 +92,16 @@ and **javascript**(AngularJs, Jquery).
 > successful.
 > Application that puts in contact job seekers with job offers using a neural
 > network based on personality, experiences etc.
-> Was responsible for making a REST api for mobile version of the website, bugfixing.
+> Was responsible for making a REST API for mobile version of the website, bug fixing.
 <br/>
 > **Worked with: Django, Rest-framework, Rest-auth, PostMan, Refactoring tools, Intensive Debugging**
 
 * ####8vance mobile
 > Mobile version of 8vance.
-> Build by me from the groud up using Ionic framework.
-> Special mentions: Dificulties faced because the backend architecture wasent
-> build for access from thind party apps, lazy loading of application resources
-> in order to make them more corfigurable and increase application performance.
+> Build by me from the ground up using Ionic framework.
+> Special mentions: Difficulties faced because the back end architecture wasn't
+> build for access from third party apps, lazy loading of application resources
+> in order to make them more configurable and increase application performance.
 <br/>
 > **Worked with: Rest-framework, Ionic, Cordova, Android SDK, Gulp, Bower**
 
@@ -101,11 +111,21 @@ and **javascript**(AngularJs, Jquery).
 > during an event. Pictures, videos and any kind of social media feedback will
 > be presented in real time as people are interacting on different Social Media
 > channels.
-> Resposabilities: Made REST endpoints for the application, implemented caching
+> Responsibilities: Made REST endpoints for the application, implemented caching
 > of scrapped data in ElasticSearch to improve performance and better aggregate and
 > display the results.
 <br/>
 > **Worked with: ElasticSearch, Kibana, Rest-framework, Haystack**
+
+* ####Spyhce Website
+> Responsibilities: Mentoring a 2 person internship team.
+<br/>
+> **Worked with: Django, CSS, Javascript, Django-admin**
+
+* ####CqScore/BsScore
+> Web application for receiving feedback from former clients.
+<br/>
+> **Worked with: Django, Google Maps APIs, PostGIS - Spatial and Geographic Objects for PostgreSQL**
 
 #Education
 
