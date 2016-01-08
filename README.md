@@ -1,3 +1,6 @@
+Original README. This is a forked repository, made a lot of changes, but it's
+fair to leave the original author's readme.
+
 # Blog
 
 This is the third iteration of my blog. I've also written a [detailed meta-post](http://eyeshalfclosed.com/blog/2013/07/30/building-this-blog/) on its construction.
@@ -26,5 +29,5 @@ The design has some key influencers:
    * [Medium.com](http://medium.com): Particularly their layout for an individual post.
    * [Aaron Moodie's Blog](http://aaronmoodie.com/): Follows a Tumble-log style, with different post types.
    * [mnmlist](http://mnmlist.com/): An inspiration for life too.
-   
+
 I also use icons from [FontAwesome](http://fortawesome.github.io/Font-Awesome/icons/).
