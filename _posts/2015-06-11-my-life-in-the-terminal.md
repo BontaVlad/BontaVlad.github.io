@@ -99,6 +99,11 @@ everything just works but this time faster. A must have tool for me.
 > something like Helm/Anything/CtrlP for the terminal. It tries to find the best
 > match, like other fuzzy finders (Sublime, ido, Helm).
 
+This is what README will tell you, I mostly use it for git add, quicly rm a
+file or simply quick open it for editing. I see a lot of potential here but I
+always fall back to old habits(shame shame).
+
+
 ####[feh][feh-link]
 feh is an X11 image viewer aimed mostly at console users.
 Unlike most other viewers, it does not have a fancy GUI, but simply displays
