@@ -111,10 +111,6 @@ images. It is controlled via command line arguments and configurable key/mouse a
 Quick and dirty way to check out some images without leaving the comfort of the
 terminal.
 
-This is what README will tell you, I mostly use it for git add, quickly rm a file
-or simply quick open it for editing. I see a lot of potential here but I always
-fall back to old habits(shame shame).
-
 ####[Tree][tree-link]
 Tree is a recursive directory listing program that produces a depth indented
 listing of files. I mostly use it to see a new project file structure or maybe I
