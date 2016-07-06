@@ -335,3 +335,72 @@ p.feature-image img {
         display: none;
     }
 }
+
+@media print {
+
+    .container {
+        margin: 3em 0;
+    }
+
+    .author-info {
+        float: none;
+        margin: 0 auto 3em auto !important;
+        text-align: center !important;
+        width: 80%;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .nav a {
+        padding: 0.5em;
+    }
+
+    .right-column {
+        padding: 0 2em;
+    }
+
+    .home-nav li {
+        display: none;
+    }
+
+    .resume-update {
+        display: none;
+    }
+
+    .resume-print {
+        display: none !important;
+    }
+
+    p {
+        font-size: 80% !important;
+    }
+
+    h1, h2 {
+        margin: 0em  !important;
+        font-size: 1.8em !important;
+        page-break-before: always;
+    }
+
+    h3, h4 {
+        margin: 0.3em  !important;
+        font-size: 80% !important;
+        page-break-after: avoid;
+    }
+
+    ul {
+        margin: 0em !important;
+        page-break-before: always !important;
+        page-break-inside: avoid !important;
+    }
+
+    li {
+        font-size: 80% !important;
+    }
+
+    p {
+        margin: 0em !important;
+    }
+
+}
