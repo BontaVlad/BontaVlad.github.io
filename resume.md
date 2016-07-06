@@ -13,7 +13,7 @@ permalink: /resume/
 
 - Neovim, Tmux, Unix shell environments
 - Git, Github, Bitbucket
-- GNU/Linux, Windows
+- GNU/Linux(Ubuntu, Arch), Windows
 - Dvorak keyboard layout
 
 <br/>
@@ -23,7 +23,7 @@ permalink: /resume/
 
 - Great with Python, Javascript, HTML, CSS/Sass, SQL
 - Can operate in Bash, Java, C#
-- Basic knowledge of Erlang, Elixir, Rust, Go
+- Basic knowledge of Erlang, Elixir, Rust, Go, Nim
 
 <br/>
 
@@ -40,6 +40,8 @@ permalink: /resume/
 ------------
 
 - Django, Django Rest framework, Allauth
+- Celery
+- Swagger
 - Ionic, Cordova
 - Logstash, Kibana
 - Nose, Markdown
@@ -76,6 +78,18 @@ and **javascript**(AngularJs, Jquery).
 <br/>
 
 **Projects at Spyhce that I worked on:**
+
+* ####Confidential
+> The project is a statistic platform for betting enthusiasts. Users can buy
+> widgets for several dashboards and teams with game statistics in order to make
+> better bets. Second part of the application involved aggregating match
+> statistics and bets odds from different betting platforms.
+> I was the **lead backend developer** on the project working closely with the
+> front end developer. The project architecture was split in two major parts,
+> back end acting as a provider of a service and the front end being the
+> consumer.
+<br/>
+> **Worked with: Django, All-Auth, Rest-framework, Redis, Celery, Swagger**
 
 * ####Moody365
 > Social media application with the mission of providing it's users with a day
