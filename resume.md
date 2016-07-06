@@ -6,9 +6,9 @@ permalink: /resume/
 
 <br/>
 
-#Skills <a href="javascript:window.print()"><i class="resume-print icon-print"></i></a>
+# Skills <a href="javascript:window.print()"><i class="resume-print icon-print"></i></a>
 
-###Tools
+### Tools
 --------
 
 - Neovim, Tmux, Unix shell environments
@@ -18,7 +18,7 @@ permalink: /resume/
 
 <br/>
 
-###Programming Languages
+### Programming Languages
 ------------
 
 - Great with Python, Javascript, HTML, CSS/Sass, SQL
@@ -27,7 +27,7 @@ permalink: /resume/
 
 <br/>
 
-###Spoken Languages
+### Spoken Languages
 ------------
 
 - Romanian (Native)
@@ -36,7 +36,7 @@ permalink: /resume/
 
 <br/>
 
-###Web Frameworks, Generators, Notable Libraries
+### Web Frameworks, Generators, Notable Libraries
 ------------
 
 - Django, Django Rest framework, Allauth
@@ -48,7 +48,7 @@ permalink: /resume/
 
 <br/>
 
-###Frontend Libraries and Frameworks
+### Frontend Libraries and Frameworks
 ------------------------------------
 - Jquery
 - AngularJs
@@ -59,16 +59,16 @@ permalink: /resume/
 
 <br/>
 
-###Databases / Stores
+### Databases / Stores
 ------------------------------------
 - PostgreSQL, MySQL, MS SQL Server
 - Redis, Memcached, ElasticSearch
 
 <br/>
 
-#Experience
+# Experience
 
-###Spyhce
+### Spyhce
 *March 2014 – Present | Cluj County, Romania*
 
 With Spyhce, I am part of a team of developers and designers that specializes in
@@ -79,7 +79,7 @@ and **javascript**(AngularJs, Jquery).
 
 **Projects at Spyhce that I worked on:**
 
-* ####Confidential
+* #### Confidential
 > The project is a statistic platform for betting enthusiasts. Users can buy
 > widgets for several dashboards and teams with game statistics in order to make
 > better bets. Second part of the application involved aggregating match
@@ -89,9 +89,9 @@ and **javascript**(AngularJs, Jquery).
 > back end acting as a provider of a service and the front end being the
 > consumer.
 <br/>
-> **Worked with: Django, All-Auth, Rest-framework, Redis, Celery, Swagger**
+> **Worked with: Django, All-Auth, Rest-framework, Redis, Celery, Swagger, REST**
 
-* ####Moody365
+* #### Moody365
 > Social media application with the mission of providing it's users with a day
 > by day snapshot of photos, interactions, activities made.
 > Was involved in the project from the beginning, responsible(with another colleague)
@@ -99,7 +99,7 @@ and **javascript**(AngularJs, Jquery).
 <br/>
 > **Worked with: Agile, Django, All-Auth, Rest-framework, Redis, AngularJs**
 
-* ####8vance
+* #### 8vance
 > 8vance provides companies and candidates with the big picture of their
 > individual job- and labour market. This will help them to avoid uncertainty,
 > anticipate the future, take better and faster decisions and just be more
@@ -110,7 +110,7 @@ and **javascript**(AngularJs, Jquery).
 <br/>
 > **Worked with: Django, Rest-framework, Rest-auth, PostMan, Refactoring tools, Intensive Debugging**
 
-* ####8vance mobile
+* #### 8vance mobile
 > Mobile version of 8vance.
 > Build by me from the ground up using Ionic framework.
 > Special mentions: Difficulties faced because the back end architecture wasn't
@@ -119,7 +119,7 @@ and **javascript**(AngularJs, Jquery).
 <br/>
 > **Worked with: Rest-framework, Ionic, Cordova, Android SDK, Gulp, Bower**
 
-* ####SmartFeedz
+* #### SmartFeedz
 > Social Media Aggregator that aims to collect Social Media messages about
 > an event or brand page, from several different sources, and present them live
 > during an event. Pictures, videos and any kind of social media feedback will
@@ -131,29 +131,29 @@ and **javascript**(AngularJs, Jquery).
 <br/>
 > **Worked with: ElasticSearch, Kibana, Rest-framework, Haystack**
 
-* ####Spyhce Website
+* #### Spyhce Website
 > Responsibilities: Mentoring a 2 person internship team.
 <br/>
 > **Worked with: Django, CSS, Javascript, Django-admin**
 
-* ####CqScore/BsScore
+* #### CqScore/BsScore
 > Web application for receiving feedback from former clients.
 <br/>
 > **Worked with: Django, Google Maps APIs, PostGIS - Spatial and Geographic Objects for PostgreSQL**
 
-#Education
+# Education
 
 ### Technical University of Cluj-Napoca - Cluj-Napoca
 --------------------------
 
 2008 - 2012 - Bachelor of Civil Engineering
 
-###Babeș-Bolyai University - Cluj-Napoca
+### Babeș-Bolyai University - Cluj-Napoca
 --------------------------
 
 2012 - 2015 - Bachelor of Computer Science
 
-###Colegiul National Simion Barnutiu - Simleu Silvaniei
+### Colegiul National Simion Barnutiu - Simleu Silvaniei
 --------------------------
 
 2003 - 2007 - High School Diploma Math - Computer Science
