@@ -2,6 +2,7 @@
 layout: post
 title: You don't care about performance (Part 1)
 tags: python performance
+comments: true
 ---
 
 My take on python profiling, definitions, motives, tools, cavesets and a hands
