@@ -20,6 +20,9 @@ kramdown:
   smart_quotes: apos,apos,quot,quot
   parse_block_html: true
 
+exclude:
+  - "*.org"
+
 # Site settings
 permalink: /blog/:year/:month/:day/:title/
 relative_permalinks: false
