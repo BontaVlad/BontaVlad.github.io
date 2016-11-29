@@ -1,0 +1,95 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil -:nil
+---
+layout: post
+title: To c or not to c? Let Nim answer the question!
+tags: nim python
+comments: true
+---
+
+Every conversation I had about python would eventually arrive at performance. And every time I would answer it with c extensions, nuitka etc. But in reality I never used c extensions or wrote performant python code. Why not write something to test it and try to squeeze nim into the mix.
+
+---
+
+#+CAPTION: Image credits to www.martianpictures.com
+#+NAME:   turtle www.martianpictures.com
+#+ATTR_HTML: :width 40px
+[[http://i.imgur.com/LLp11KJ.png]]
+
+#+TOC: headlines
+
+* Looking for trouble
+I was searching for a scenario that was cpu intensive, easy to explain and somehow reflect a real life scenario so I settled on a [[https://en.wikipedia.org/wiki/Truevision_TGA][Truvision]] image format. 
+In our case we will fill the first half of the image with red pixels for about 1000 ~*.tga~ images. Since it's a batch, the time it takes to edit each image is important. To make things worse for the solutions we chose, we will deal with a mixture of image sizes of 15, 150, 512, 1024, 2048 and 4096 px wide.
+
+Before we go further let's take a quick look at the targa specs to have a better context regarding our mission if we chose to accept it. First the bytes arrangement:
+
+** Truevision image format
+Truevision TGA, often referred to as TARGA, is a raster graphics file format created by Truevision Inc. I chose it because it uses a simple compression algorithm and it's heavly used in game engines so it has some practical uses.
+Here is a oversimplified table representing the format. The byte layout is not important for our case, I put it here just to better illustrate what we are dealing with.
+
+| header               | bytes data     | footer           |
+|----------------------+----------------+------------------|
+| id length            | RLE            | Extension offset | 
+| ...                  |      or        | ...              |
+| image specifications | no compression | Signature        |
+
+We can chose either to compress the image or not, but for a more demanding benchmark, let's go with the pour man's compression:
+
+** RLE compression algorithm
+Run-length encoding (RLE) is a very simple form of lossless data compression in which runs of data (that is, sequences in which the same data value occurs in many consecutive data elements) are stored as a single data value and count, rather than as the original run. This is most useful on data that contains many such runs.
+
+A hypothetical scan line, with B representing a black pixel and W representing white, might read as follows:
+~WWWWBBBWWBBBBBBW~ 
+With a run-length encoding (RLE) data compression algorithm applied to the above hypothetical scan line, it can be rendered as follows:
+~4W3B2W6B1W~
+* Getting out of trouble
+Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
+
+** [[https://hg.python.org/cpython/file/tip][cPython]] 
+First of: the python implementation we all know and love. The [[https://github.com/MircoT/pyTGA][implementation]] pula mea.
+** [[http://nuitka.net/][nuitka]] 
+#+BEGIN_QUOTE
+Nuitka is a Python compiler.
+It's fully compatible with Python 2.6, 2.7, 3.2, 3.3, and 3.4.
+
+You feed it your Python app, it does a lot of clever things, and spits out an executable or extension module.
+#+END_QUOTE
+Nuitka makes getting that needed performan verry simple. Just:
+~nuitka --recurse-all program.py~ and you are set.
+** [[http://pypy.org/][pypy]] 
+#+BEGIN_QUOTE
+PyPy is a fast, compliant alternative implementation of the Python language (2.7.12 and 3.3.5). It has several advantages and distinct features, speed, memory usage, compatibility, stackless
+Simple, easy and fast: ~pypy program.py~
+Downside c extensions are unsupported on pypy.
+#+END_QUOTE
+** [[http://numba.pydata.org/][numba]] 
+#+BEGIN_QUOTE
+Numba gives you the power to speed up your applications with high performance functions written directly in Python. With a few annotations, array-oriented and math-heavy Python code can be just-in-time compiled to native machine instructions, similar in performance to C, C++ and Fortran, without having to switch languages or Python interpreters.
+
+Numba works by generating optimized machine code using the LLVM compiler infrastructure at import time, runtime, or statically (using the included pycc tool). Numba supports compilation of Python to run on either CPU or GPU hardware, and is designed to integrate with the Python scientific software stack.
+#+END_QUOTE
+Add a ~@jit~ on stuff you want to go fast and TADA!
+** [[http://nim-lang.org/][nim]] 
+#+BEGIN_QUOTE
+Nim (formerly known as "Nimrod") is a statically typed, imperative programming language that tries to give the programmer ultimate power without compromises on runtime efficiency. This means it focuses on compile-time mechanisms in all their various forms.
+#+END_QUOTE
+** [[https://github.com/jboy/nim-pymod][nim-pymod]] 
+Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu, wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.  Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.
+
+** Speed comparison
+Have I made a decisio: No, Am I intrigued: certainly!
+Benchmarking code is [[https://github.com/BontaVlad/nimtga/blob/master/benchmark.py][here]]. I used matplotlib to render the speed comparison diagram.
+Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
+
+[[http://i.imgur.com/csyn0lj.png]]
+
+* Nim: What the hell is it?
+Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
+
+** The good
+Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
+** The bad
+Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
+** The ugly
+Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
