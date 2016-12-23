@@ -2,12 +2,12 @@
 #+OPTIONS: toc:nil -:nil
 ---
 layout: post
-title: To c or not to c? Let Nim answer the question!
+title: To C or not to C? Let Nim answer the question!
 tags: nim python
 comments: true
 ---
 
-Python. Elegant, powerful, smart, a true super hero of programming languages. But like any superhero, it must have a weakness, and in this case, the weakness is speed. To overcome this, wise wizzards forged many splendid solutions, at some we will take a look here, others going as far as making python fast by not writing python at all(c extensions). While C is fast, not everyone can or want's to harness that power, so for them(me included) I say "Try Nim".
+Python. Elegant, powerful, smart, a true super hero of programming languages. But like any superhero, it must have a weakness, it's weakness is speed. Wise wizard's came up with clever ways to overcome this, some of them going as far as making python fast by not writing python at all(c extensions). While C is fast, such power should not be treated lightly! For those not eager to deal with C hiccups I say *give Nim a try!*.
 
 ---
 
@@ -52,7 +52,7 @@ A hypothetical scan line, with B representing a black pixel and W representing w
 With a run-length encoding (RLE) data compression algorithm applied to the above hypothetical scan line, it can be rendered as follows:
 ~4W3B2W6B1W~
 * Getting out of trouble
-Now that we know our "villain" how can we overcome it? Before getting our hands dirty with C or Nim, maybe we can dodge a bullet by using more "cleaner" ways of getting the required speed. Our mission is not making the fastest implementation yet, we strive for a "good enough" speed, good enough to get our job done without spending to much development power to do that, ideally non.
+Now that we know our "villain" how can we overcome it? Before getting our hands dirty with C or Nim, maybe we can dodge a bullet by using more "cleaner" ways of getting the required speed. Our mission is not making the fastest implementation yet, we strive for a "good enough" speed, good enough to get our job done without spending to much development power to do that, ideally none.
 
 ** [[https://hg.python.org/cpython/file/tip][cPython]] 
 The hero we need, the hero we want(well most of the time at least)!
@@ -60,8 +60,11 @@ The hero we need, the hero we want(well most of the time at least)!
 [[https://github.com/MircoT/pyTGA][pyTGA]] is a pure Python module to manage TGA images. The library supports these kind of formats (compressed with RLE or uncompressed):
 
 Grayscale - 8 bit depth
+
 RGB - 16 bit depth
+
 RGB - 24 bit depth
+
 RGBA - 32 bit depth
 
 To ruin the surprise, this will be the slowest of the bunch but it will serve as the reference point for our benchmark while also providing the blueprints for the Nim implementation. By blueprints I meas a almost 1-1 port from Python to Nim. Important to add, I am not the original author of the module, the honor goes to a guy named [[https://github.com/MircoT/pyTGA][Mirco]].
@@ -80,7 +83,7 @@ If interpreting things is slow, why not compile it? Sounds crazy? think again! T
 #+BEGIN_QUOTE
 PyPy is a fast, compliant alternative implementation of the Python language (2.7.12 and 3.3.5). It has several advantages and distinct features, speed, memory usage, compatibility, stackless
 #+END_QUOTE
-Simple, easy and fast: ~pypy program.py~. What could go wrong?
+Get a huge speed improvement by just replacing ~python~ with ~pypy~ eg: ~pypy program.py~. To good to be true? Yes, yes it is! Two things: warmup time and incompatibility with all those good python modules written with the help of C. While the pypy team is trying to solve this thing, for now this could be a show stopper for many.
 # ** [[http://numba.pydata.org/][numba]] 
 # #+BEGIN_QUOTE
 # Numba gives you the power to speed up your applications with high performance functions written directly in Python. With a few annotations, array-oriented and math-heavy Python code can be just-in-time compiled to native machine instructions, similar in performance to C, C++ and Fortran, without having to switch languages or Python interpreters.
@@ -89,25 +92,22 @@ Simple, easy and fast: ~pypy program.py~. What could go wrong?
 # #+END_QUOTE
 # Add a ~@jit~ on stuff you want to go fast and TADA!
 ** [[http://nim-lang.org/][nim]] 
+As the new hero rises, it comes with a promise: *"Performance can also be elegant!"*
 #+BEGIN_QUOTE
 Nim (formerly known as "Nimrod") is a statically typed, imperative programming language that tries to give the programmer ultimate power without compromises on runtime efficiency. This means it focuses on compile-time mechanisms in all their various forms.
 #+END_QUOTE
+Before venturing further, you python hackers out there should quickly check out [[https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers][nim for python programmers]], this will come in handy when inspecting the solution implemented in nim that you can find [[https://github.com/BontaVlad/nimtga/blob/master/nimtga.nim][here]]. I am still learning this stuff out, so take everything with a grain of salt, a battle-scarred nim programmer will surely cringe at my source code, but what the hell: "fail fast, fail early, fail often!" as Mozilla like's to say.
+Nim produces small executables without dependencies, so calling the code is easy: ~program_bin args~
 ** [[https://github.com/jboy/nim-pymod][nim-pymod]] 
-Pellentesque dapibus suscipit ligula.  Donec posuere augue in quam.  Etiam vel tortor sodales tellus ultricies commodo.  Suspendisse potenti.  Aenean in sem ac leo mollis blandit.  Donec neque quam, dignissim in, mollis nec, sagittis eu, wisi.  Phasellus lacus.  Etiam laoreet quam sed arcu.  Phasellus at dui in ligula mollis ultricies.  Integer placerat tristique nisl.  Praesent augue.  Fusce commodo.  Vestibulum convallis, lorem a tempus semper, dui dui euismod elit, vitae placerat urna tortor vitae lacus.  Nullam libero mauris, consequat quis, varius et, dictum id, arcu.  Mauris mollis tincidunt felis.  Aliquam feugiat tellus ut neque.  Nulla facilisis, risus a rhoncus fermentum, tellus tellus lacinia purus, et dictum nunc justo sit amet elit.
+Now that you fallen in love with Nim, should you replace all you're code base with it? Of course not! Python is great, great packages, great community, great code around it. So why not swap the performance critical part of the code with nim and keep the rest of the goodness in python.
+Usually this involves a great deal of boiler-plate code, but lucky we have tools to do that for us, in this case: nim-pymod. Better head over to the project github page for a great introduction, and after that glance at my humble [[https://github.com/BontaVlad/nimtga/blob/master/nimtga.nim][solution]]. Code comments should explain the reason behind some of the code. And for the python wrapper part, check [[https://github.com/BontaVlad/nimtga/blob/master/pymodtga.py][this]].
 
 ** Speed comparison
 Have I made a decisio: No, Am I intrigued: certainly!
 Benchmarking code is [[https://github.com/BontaVlad/nimtga/blob/master/benchmark.py][here]]. I used matplotlib to render the speed comparison diagram.
-Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
 
 [[http://i.imgur.com/csyn0lj.png]]
+http://i.imgur.com/qvdur1C.png
 
-* Nim: What the hell is it?
+* Nim: Tell me more!
 Aliquam erat volutpat.  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.  Proin neque massa, cursus ut, gravida ut, lobortis eget, lacus.  Sed diam.  Praesent fermentum tempor tellus.  Nullam tempus.  Mauris ac felis vel velit tristique imperdiet.  Donec at pede.  Etiam vel neque nec dui dignissim bibendum.  Vivamus id enim.  Phasellus neque orci, porta a, aliquet quis, semper a, massa.  Phasellus purus.  Pellentesque tristique imperdiet tortor.  Nam euismod tellus id erat.
-
-** The good
-Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
-** The bad
-Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
-** The ugly
-Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
