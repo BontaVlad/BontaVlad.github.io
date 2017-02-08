@@ -1,0 +1,999 @@
+---
+layout: post
+title: To C or not to C? Let Nim answer the question!
+tags: nim python
+comments: true
+---
+
+Python. Elegant, powerful, smart, a true super hero of programming languages. But like any superhero, it must have a weakness, it's weakness is speed. Wise wizard's came up with clever ways to overcome this, some of them going as far as making python fast by not writing python at all(c extensions). While C is fast, such power should not be treated lightly! For those not eager to deal with C hiccups I say **give Nim a try!**.
+
+---
+
+![img](//i.imgur.com/LLp11KJ.png "Image credits to www.martianpictures.com")
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc4f0f0b">1. Buyers beware!</a></li>
+<li><a href="#org046c7e7">2. Looking for trouble</a>
+<ul>
+<li><a href="#orge0e62cc">2.1. Truevision image format</a></li>
+<li><a href="#orgeba5059">2.2. RLE compression algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org56d8f12">3. Getting out of trouble</a>
+<ul>
+<li><a href="#orgdb85ea2">3.1. cPython</a></li>
+<li><a href="#org1524c13">3.2. Nuitka</a></li>
+<li><a href="#orgf78979f">3.3. Pypy</a></li>
+<li><a href="#org47ea30b">3.4. Numba</a></li>
+<li><a href="#org1544a9d">3.5. Nim</a></li>
+<li><a href="#org73665cb">3.6. nim-pymod</a></li>
+<li><a href="#orgfb50597">3.7. Procedure parameter &amp; return types</a></li>
+<li><a href="#org5a16282">3.8. Support for the following Nim types is in development:</a></li>
+<li><a href="#org8627c5d">3.9. PyMod -&gt; NimTga implementation</a></li>
+<li><a href="#orgf8a5e26">3.10. Bonus Stage: Going Commando - ditching pymod and using ctypes</a></li>
+<li><a href="#org8db7479">3.11. Python Code</a></li>
+<li><a href="#org798fe42">3.12. Compile and run</a></li>
+<li><a href="#org9426b10">3.13. How do we know the arguments type?</a></li>
+</ul>
+</li>
+<li><a href="#org4ce091a">4. Did I get out of trouble?</a>
+<ul>
+<li><a href="#org4c41fb3">4.1. PC specs</a></li>
+<li><a href="#orga1c4934">4.2. Results</a></li>
+<li><a href="#org5f64aed">4.3. Detail view on the fastest three</a></li>
+<li><a href="#org9b38e80">4.4. Detail view on small execution time</a></li>
+</ul>
+</li>
+<li><a href="#orgeba4925">5. Hello, is it Nim you're looking for?</a>
+<ul>
+<li><a href="#org8a68f48">5.1. What is Nim?</a></li>
+<li><a href="#org0fa2a85">5.2. Goals</a></li>
+<li><a href="#orga53a4df">5.3. Uses of Nim</a></li>
+</ul>
+</li>
+<li><a href="#org7513c2f">6. Bonus</a></li>
+</ul>
+</div>
+</div>
+
+
+# Buyers beware!
+
+> “Do I really look like a guy with a plan? You know what I am? I'm a dog chasing cars. I wouldn't know what to do with one if I caught it! You know, I just... **do** things.”
+> ― The Joker - Heath Ledger
+
+-   I am you're average Joe programmer. No fancy big corporation, no big project, not much experience.
+-   Every benchmark out there lies, this included.
+-   I am very biased towards Nim.
+
+> “Madness, as you know, is a lot like gravity, all it takes is a little push” - The Joker
+
+The focus of this article is not introducing Nim, nor the other options of speeding up python presented by me here. My focus is sparking interest towards Nim, giving readers reasons to include Nim in their workflow.
+
+
+# Looking for trouble
+
+"Every Fairy Tale Needs A Good Old Fashioned Villain" so our "villain" must be cpu intensive, IO intensive as well while being relative easy to explain and somehow similar to a real use case scenario. Eventually I settled on this: 
+
+> We have around 1000 Truevision images that we want to open, 
+> fill the first half with red pixels(simulate a watermark), and finally save it.
+
+![img](//i.imgur.com/Ip3PR9Y.jpg "The image I am talking about:")
+
+Since it's a batch process, the time it takes to edit each image is critical because each delay will add up to great amounts at the end. To better simulate real world scenarios, we will have to deal with a mixture of image sizes: 15, 150, 512, 1024, 2048 and 4096 pixels wide.
+I use small images to tax just it time compilation(jit) warm-up time and big images to either see how well a solution scales or help jit shine at it's best advantage.
+Before we go further let's take a quick look at what we are dealing with:
+
+
+## Truevision image format
+
+Truevision TGA, often referred to as TARGA, is a raster graphics file format created by Truevision Inc. I chose it because it uses a simple compression algorithm and it's heavily used in game engines so it has some practical uses.
+Here is a oversimplified table representing the format. The byte layout is not important for our case, but it's here to better illustrate what we are dealing with.
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">header</th>
+<th scope="col" class="org-left">bytes data</th>
+<th scope="col" class="org-left">footer</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">id length</td>
+<td class="org-left">RLE</td>
+<td class="org-left">Extension offset</td>
+</tr>
+
+
+<tr>
+<td class="org-left">...</td>
+<td class="org-left">or</td>
+<td class="org-left">...</td>
+</tr>
+
+
+<tr>
+<td class="org-left">image specifications</td>
+<td class="org-left">no compression</td>
+<td class="org-left">Signature</td>
+</tr>
+</tbody>
+</table>
+
+We can either go with compressing the image or not, but for a more demanding benchmark we chose the former over the latter.
+
+
+## RLE compression algorithm
+
+Wikipedia says it best:
+
+> Run-length encoding (RLE) is a very simple form of lossless data compression in which runs of data (that is, sequences in which the same data value occurs in many consecutive data elements) are stored as a single data value and count, rather than as the original run. This is most useful on data that contains many such runs.
+
+A hypothetical scan line, with B representing a black pixel and W representing white, might read as follows:
+`WWWWBBBWWBBBBBBW` 
+With a run-length encoding (RLE) data compression algorithm applied to the above hypothetical scan line, it can be rendered as follows:
+`4W3B2W6B1W`
+
+
+# Getting out of trouble
+
+> “If I have to have a past, then I prefer it to be multiple choice.” ― Joker from Batman: The Killing Joke
+
+Now that we know our "villain" how can we overcome it? Before getting our hands dirty with C or Nim, maybe we can dodge a bullet by using more "cleaner" ways of getting the required speed. Our mission is not making the fastest implementation yet, we strive for a "good enough" speed, good enough to get our job done without spending to much development power to do that, ideally none.
+
+[pyTGA](https://github.com/MircoT/pyTGA) is a pure Python module to manage TGA images. The library supports these kind of formats (compressed with RLE or uncompressed):
+
+-   Grayscale - 8 bit depth
+-   RGB - 16 bit depth
+-   RGB - 24 bit depth
+-   RGBA - 32 bit depth
+
+
+## [cPython](https://hg.python.org/cpython/file/tip)
+
+The hero we need, the hero we want(well most of the time at least)!
+
+To ruin the surprise, this will be the slowest of the bunch but it will serve as the reference point for our benchmark while also providing the blueprints for the Nim implementation. By blueprints I meas a almost 1-1 port from Python to Nim. Important to add, I am not the original author of the module, the honor goes to a guy named [Mirco](https://github.com/MircoT/pyTGA).
+
+Here is a high level view of the code involved. The full code can be found [here](https://github.com/MircoT/pyTGA).
+
+{% highlight python %}
+
+    class TGAHeader(object):
+        def __init__(self):
+            self.id_length = 0
+            self.color_map_type = 0
+            self.image_type = 0
+            # ...
+    
+    
+    class TGAFooter(object):
+    
+        def __init__(self):
+            self.extension_area_offset = 0
+            self.developer_directory_offset = 0
+            self.signature = "TRUEVISION-XFILE"
+            # ...
+    
+    class Image(object):
+    
+        def __init__(self):
+            self._header = TGAHeader()
+            self._footer = TGAFooter()
+            self._pixels = []
+    
+        def load(self, file_name):
+            pass
+            # ...
+    
+        def save(self, file_name, original_format=False, force_16_bit=False,
+                 compress=False):
+            pass
+            # ...
+    
+    
+    @staticmethod
+    def _encode(row):
+        """Econde a row of pixels.
+        This function is a generator used during the compression phase. More
+        information on packets generated are after returns section."""
+        pass
+        # ...
+
+{% endhighlight %}
+
+
+## [Nuitka](http://nuitka.net/)
+
+> Nuitka is a Python compiler.
+> It's fully compatible with Python 2.6, 2.7, 3.2, 3.3, and 3.4.
+> 
+> You feed it your Python app, it does a lot of clever things, and spits out an executable or extension module.
+
+If interpreting things is slow, why not compile it? Sounds crazy? think again! The team behind nuitka did just that and what we get is a simple, elegant way of speeding our code, and in some cases it can also help making distribution easyer because it packs everything in a nice `*.exe`.
+
+`nuitka --recurse-all program.py` and you are set. `recurse-all` option will transverse the dependencies tree and compile them to, one by one.
+
+
+## [Pypy](http://pypy.org/)
+
+> PyPy is a fast, compliant alternative implementation of the Python language (2.7.12 and 3.3.5). It has several advantages and distinct features, speed, memory usage, compatibility, stackless
+
+Get a huge speed improvement by just replacing `python` with `pypy` eg: `pypy program.py`. To good to be true? Yes, yes it is! Two things: warmup time and incompatibility with all those good python modules written with the help of C. While the pypy team is trying to solve this thing, for now this could be a show stopper for many.
+
+
+## Numba
+
+With a few annotations, array-oriented and math-heavy Python code can be made to be similar in performance to C, C++ and Fortran.
+
+Numba works by generating optimized machine code using the LLVM compiler.
+
+Compilation can run on either CPU or GPU hardware, integrates well with Python scientific software stack.
+
+{% highlight python %}
+
+    # Taken directly from the project home page
+    from numba import jit
+    from numpy import arange
+    
+    # jit decorator tells Numba to compile this function.
+    # The argument types will be inferred by Numba when function is called.
+    @jit
+    def sum2d(arr):
+        M, N = arr.shape
+        result = 0.0
+        for i in range(M):
+            for j in range(N):
+                result += arr[i,j]
+        return result
+    
+    a = arange(9).reshape(3,3)
+    print(sum2d(a))
+
+{% endhighlight %}
+
+Not included in the benchmark because the following Python language features are not currently supported:
+
+-   Function definition
+-   Class definition
+-   Exception handling (`try .. except`, `try .. finally`)
+-   Context management (the `with` statement)
+-   Comprehensions (either `list`, `dict`, `set` or `generator comprehensions`)
+-   Generator delegation (`yield from`)
+
+This meant modifing the original code, thing that I dident want to do for to reasons: One: I already spent to much time on something that should have been a weekend project, second: numba implementation would have been quite different from the others and I wanted the code to look as much as posible with the rest.
+Numba and Cython deserve a separate blog post each, stay tuned, maybe the gods of productivity will smile upon me and make this possible.
+
+
+## [Nim](http://nim-lang.org/)
+
+As the new hero rises, it comes with a promise: **"Performance can also be elegant!"**
+
+> Nim (formerly known as "Nimrod") is a statically typed, imperative programming language that tries to give the programmer ultimate power without compromises on runtime efficiency. This means it focuses on compile-time mechanisms in all their various forms.
+
+Before venturing further, you python hackers out there should quickly check out [nim for python programmers](https://github.com/nim-lang/Nim/wiki/Nim-for-Python-Programmers), this will come in handy when inspecting the solution implemented in nim that you can find [here](https://github.com/BontaVlad/nimtga/blob/master/nimtga.nim). I am still learning this stuff out, so take everything with a grain of salt, a battle-scarred nim programmer will surely cringe at my source code, but what the hell: "fail fast, fail early, fail often!" as Mozilla like's to say.
+
+For the lazy ones that didn't check the link above take this short summary:
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Feature</th>
+<th scope="col" class="org-left">Python</th>
+<th scope="col" class="org-left">Nim</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">Execution model</td>
+<td class="org-left">Virtual Machine, JIT</td>
+<td class="org-left">Machine code via C\*</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Meta-programming</td>
+<td class="org-left">Python (decorators/metaclasses/eval)</td>
+<td class="org-left">Nim (const/when/template/macro)</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Memory Management</td>
+<td class="org-left">Garbage-collected</td>
+<td class="org-left">Garbage-collected and manual</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Types</td>
+<td class="org-left">Dynamic</td>
+<td class="org-left">Static</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Dependent types</td>
+<td class="org-left">-</td>
+<td class="org-left">Partial support</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Generics</td>
+<td class="org-left">Duck typing</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">int8/16/32/64 types</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Bigints (arbitrary size)</td>
+<td class="org-left">Yes (transparently)</td>
+<td class="org-left">Yes (via nimble package)</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Arrays</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Bounds-checking</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Type inference</td>
+<td class="org-left">Duck typing</td>
+<td class="org-left">Yes (extensive support)</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Closures</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Operator Overloading</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes (on any type)</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Custom Operators</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Object-Oriented</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Minimalistic\*\*</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Methods</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Multi-Methods</td>
+<td class="org-left">No</td>
+<td class="org-left">Yes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Exceptions</td>
+<td class="org-left">Yes</td>
+<td class="org-left">Yes</td>
+</tr>
+</tbody>
+</table>
+
+\\\* Other backends supported and/or planned
+\\\*\* Can be achieved with macros
+
+Nim produces small executables without dependencies, so calling the code is easy: `program_bin args`
+
+
+## [nim-pymod](https://github.com/jboy/nim-pymod)
+
+Now that you fallen in love with Nim, should you replace all you're code base with it? Of course not! Python is great, great packages, great community, great code around it. So why not swap the performance critical part of the code with nim and keep the rest of the goodness in python.
+Usually this involves a great deal of boiler-plate code, but lucky we have tools to do that for us, in this case: nim-pymod. Better head over to the project github page for a great introduction, and after that glance at my humble [solution](https://github.com/BontaVlad/nimtga/blob/master/nimtga.nim). Code comments should explain the reason behind some of the code. And for the python wrapper part, check [this](https://github.com/BontaVlad/nimtga/blob/master/pymodtga.py).
+
+What can pymod do for you?:
+
+-   Auto-generates a Python module that wraps a Nim module
+-   pymod consists of Nim bindings & Python scripts to automate the generation of Python C-API extensions
+-   There's even a PyArrayObject that provides a Nim interface to Numpy arrays.
+
+{% highlight nim %}
+
+    # Compile this Nim module using the following command:
+    # python path/to/pmgen.py greeting.nim
+    
+    # Taken directly from the projects README
+    
+    import strutils  # `%` operator
+    
+    import pymod
+    import pymodpkg/docstrings
+    
+    proc greet*(audience: string): string {.exportpy.} =
+      docstring"""
+      Greet the specified audience with a familiar greeting.
+      The string returned will be a greeting directed
+      specifically at that audience.
+      """
+      return "Hello, $1!" % audience
+    
+    initPyModule("hw", greet)
+
+{% endhighlight %}
+
+Let's test it quickly on the console
+
+{% highlight nim %}
+
+    >>> import hw
+    >>> hw.greet
+    <built-in function greet>
+    >>> hw.greet("World")
+    'Hello, World!'
+    >>> help(hw.greet)
+    Help on built-in function greet in module hw:
+    
+    greet(...)
+        greet(audience: str) -> (str)
+    
+        Parameters
+        ----------
+        audience : str -> string
+    
+        Returns
+        -------
+        out : (str) <- (string)
+    
+        Greet the specified audience with a familiar greeting.
+    
+        The string returned will be a greeting directed specifically 
+        at that audience.
+    >>>
+
+{% endhighlight %}
+
+
+## Procedure parameter & return types
+
+The following Nim types are currently supported by Pymod:
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type family</th>
+<th scope="col" class="org-left">Nim types</th>
+<th scope="col" class="org-left">Python2 type</th>
+<th scope="col" class="org-left">Python3 type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">floating-point</td>
+<td class="org-left">float, float32, float64, cfloat, cdouble</td>
+<td class="org-left">float</td>
+<td class="org-left">float</td>
+</tr>
+
+
+<tr>
+<td class="org-left">signed integer</td>
+<td class="org-left">int, int16, int32, int64, cshort, cint, clong</td>
+<td class="org-left">int</td>
+<td class="org-left">int</td>
+</tr>
+
+
+<tr>
+<td class="org-left">unsigned integer</td>
+<td class="org-left">uint, uint8, uint16, uint32, uint64, cushort, cuint, culong, byte</td>
+<td class="org-left">int</td>
+<td class="org-left">int</td>
+</tr>
+
+
+<tr>
+<td class="org-left">non-unicode character</td>
+<td class="org-left">char, cchar</td>
+<td class="org-left">str</td>
+<td class="org-left">bytes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">string</td>
+<td class="org-left">string</td>
+<td class="org-left">str</td>
+<td class="org-left">str</td>
+</tr>
+
+
+<tr>
+<td class="org-left">Numpy array</td>
+<td class="org-left">ptr PyArrayObject</td>
+<td class="org-left">numpy.ndarray</td>
+<td class="org-left">numpy.ndarray</td>
+</tr>
+</tbody>
+</table>
+
+
+## Support for the following Nim types is in development:
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type family</th>
+<th scope="col" class="org-left">Nim types</th>
+<th scope="col" class="org-left">Python2 type</th>
+<th scope="col" class="org-left">Python3 type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td class="org-left">signed integer</td>
+<td class="org-left">int8</td>
+<td class="org-left">int</td>
+<td class="org-left">int</td>
+</tr>
+
+
+<tr>
+<td class="org-left">boolean</td>
+<td class="org-left">bool</td>
+<td class="org-left">bool</td>
+<td class="org-left">bool</td>
+</tr>
+
+
+<tr>
+<td class="org-left">unicode code point (character)</td>
+<td class="org-left">unicode.Rune</td>
+<td class="org-left">unicode</td>
+<td class="org-left">str</td>
+</tr>
+
+
+<tr>
+<td class="org-left">non-unicode character sequence</td>
+<td class="org-left">seq[char]</td>
+<td class="org-left">str</td>
+<td class="org-left">bytes</td>
+</tr>
+
+
+<tr>
+<td class="org-left">unicode code point sequence</td>
+<td class="org-left">seq[unicode.Rune]</td>
+<td class="org-left">unicode</td>
+<td class="org-left">str</td>
+</tr>
+
+
+<tr>
+<td class="org-left">sequence of a single type <span class="underline">T</span></td>
+<td class="org-left">seq[T]</td>
+<td class="org-left">list</td>
+<td class="org-left">list</td>
+</tr>
+</tbody>
+</table>
+
+
+## PyMod -> NimTga implementation
+
+Since numpy arrays in nim are not so nicely wrapped as in python, we have to do some manual wrapping/unwrapping of arrays in array. Confused? You should! Let me elaborate: if you have an array in array like `arr = [[1st, 2nd, 3rd], [1st, 2nd, 3rd]]` the `shape` of arr will be `(2, 3)`, 2 because arr has 2 elements, and 3 because each element is an array with 3 elements. The problem now is that internally this is stored as continuous elements and not array in array, hence the wraping and unwrapping of elements.
+{% highlight nim %}
+
+    # ...
+    # pragma exportpy will tell pymod to wrap the function with it's magic
+    # pragma returnDict will convert result to a python dict for easy use in python
+    proc loads*(filename: string): tuple[header, footer: string, pixels: ptr PyArrayObject] {.exportpy, returnDict.}=
+      let image = newImage(filename)
+      # since pixels could be black/white 1 element, or rgb: 3 elements, rgba: 4 elements
+      let shape = getShape(image.header) # pixel shape: 1, 3 or 4 values
+      # $$ will serialize the element to json string sorta like json.dumps()
+      result.header = $$image.header
+      result.footer = $$image.footer
+      # create a numpy array [[...shape], [...shape]] with type np_uint8
+      # np_uint --> numpy unsigned integer 8 bits wide
+      result.pixels = createSimpleNew([image.pixels.high, shape], np_uint8)
+      # fill them with zeroes to get rid of random values
+      doFILLWBYTE(result.pixels, 0)
+    
+      # with var we declare a mutable variable, let declares a immutable variable
+      var i = 0
+      # we use mitems because we want mutable items
+      for mval in result.pixels.accessFlat(uint8).mitems:  # Forward-iterate through the array.
+        # i div shape will give us the index and i mod shape will give is if it is r or g or b or a
+        mval = image.pixels[i div shape][i mod shape]
+        inc(i)
+    
+    # with the discardable pragma we say that we don't care about the return type
+    proc saves*(header, footer: string, pixels: ptr PyArrayObject, filename: string, compress: int) {.discardable, exportpy.}=
+      # to(type)(data) is like instance = json.loads(data)
+      var
+        image = newImage(to[Header](header), to[Footer](footer))
+        i = 0
+    
+      # another function for getting the shape of the array
+      let shape = pixels.strides[0]
+      var pixel_data = newSeq[uint](shape)
+    
+      for v in pixels.accessFlat(uint8).items:
+        pixel_data[i] = v
+        if i == shape - 1:
+          image.pixels.add(newPixel(pixel_data))
+          pixel_data = newSeq[uint](shape)
+          i = -1
+        inc(i)
+    
+      image.save(filename, compress.bool)
+    
+    # tell pymod what to name the module and what functions to export
+    initPyModule("_ntga", loads, saves)
+
+{% endhighlight %}
+
+{% highlight python %}
+
+    # ...
+    
+    class Image(object):
+    
+        def __init__(self, filename):
+            _data = _ntga.loads(filename)
+            self._header = json.loads(_data["header"])
+            self._footer = json.loads(_data["footer"])
+            # dynamically set the object fields
+            for section in [self._header, self._footer]:
+                for k, v in section.items():
+                    setattr(self, k, v)
+            # since pymod supports numpy array we don't have to do any magic with it
+            self.pixels = _data["pixels"]
+    
+        def save(self, filename, compress=False):
+            for section in [self._header, self._footer]:
+                for k in section:
+                    section[k] = getattr(self, k)
+            # int(compress) -> 0 or 1 because pymod doesn't support boolean parameters
+            _ntga.saves(json.dumps(self._header), json.dumps(self._footer),
+                        self.pixels, filename, int(compress))
+    
+        @property
+        def pixel_size(self):
+            if self._header['image_type'] in [3, 11]:
+                return 1
+            elif self._header['image_type'] in [2, 10]:
+                if self._header['pixel_depth'] == 16 or self._header['pixel_depth'] == 24:
+                    return 3
+                elif self._header['pixel_depth'] == 32:
+                    return 4
+                else:
+                    raise ValueError("Invalid pixel depth")
+            else:
+                raise ValueError("Invalid pixel depth")
+    
+    def main(image_path=None):
+    
+        # code used for the benchmark phase
+        image_path = image_path if image_path else sys.argv[1]
+        image = Image(image_path)
+    
+        if image.pixel_size == 1:
+            pixel = (255, )
+        elif image.pixel_size == 3:
+            pixel = (255, 0, 0)
+        elif image.pixel_size == 4:
+            pixel = (255, 0, 0, 255)
+        else:
+            raise ValueError("this should not happen")
+    
+        for i in range(5):
+            image.pixels[i] = pixel
+    
+        image.save("dump.tga", compress=True)
+    
+    
+    if __name__ == "__main__":
+        main()
+
+{% endhighlight %}
+
+
+## Bonus Stage: Going Commando - ditching pymod and using ctypes
+
+Original blog post here: <http://akehrer.github.io/posts/connecting-nim-to-python/>
+
+{% highlight nim %}
+
+    # median_test.nim
+    proc median*(x: openArray[float]): float {. exportc, dynlib .} =
+      ## Computes the median of the elements in `x`.
+      ## If `x` is empty, NaN is returned.
+      if x.len == 0:
+        return NAN
+    
+      var sx = @x # convert to a sequence since sort() won't take an openArray
+      sx.sort(system.cmp[float])
+    
+    if sx.len mod 2 == 0:
+      var n1 = sx[(sx.len - 1) div 2]
+      var n2 = sx[sx.len div 2]
+      result = (n1 + n2) / 2.0
+    else:
+      result = sx[(sx.len - 1) div 2]
+
+{% endhighlight %}
+
+
+## Python Code
+
+{% highlight python %}
+
+    from ctypes import *
+    
+    def main():
+        test_lib = CDLL('median_test')
+    
+        # Function parameter types
+        test_lib.median.argtypes = [POINTER(c_double), c_int]
+    
+        # Function return types
+        test_lib.median.restype = c_double
+    
+        # Calc some numbers
+        nums = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
+        nums_arr = (c_double * len(nums))()
+        for i,v in enumerate(nums):
+            nums_arr[i] = c_double(v)
+    
+        med_res = test_lib.median(nums_arr, c_int(len(nums_arr)))
+        print('The median of %s is: %f'%(nums, med_res))
+    
+    if __name__ == '__main__':
+        main()
+
+{% endhighlight %}
+
+
+## Compile and run
+
+{% highlight sh %}
+
+    $nim c -d:release --app:lib median_test.nim
+    $python median.py
+    The median of [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0] is: 4.500000
+
+{% endhighlight %}
+
+
+## How do we know the arguments type?
+
+{% highlight python %}
+
+    nim c --app:lib --header median_test.nim
+
+{% endhighlight %}
+
+The `--header` option will produce a C header file in the nimcache folder where the module is compiled.
+
+{% highlight c %}
+
+    #ifndef __median_test__
+      #define __median_test__
+      #define NIM_INTBITS 32
+      #include "nimbase.h"
+      N_NOCONV(void, signalHandler)(int sig);
+      N_NIMCALL(NI, getRefcount)(void* p);
+      N_LIB_IMPORT N_CDECL(NF, median)(NF* x, NI xLen0);
+      N_LIB_IMPORT N_CDECL(void, NimMain)(void);
+    #endif /* __median_test__ */
+
+{% endhighlight %}
+
+The things to look for are `NF* x` which means a nim pointer to a array of floats, and `NI` that is a nim integer named `xLen0`. 0 comes from nim variable name mangling.
+The more you use the API and learn what arguments functions takes, the use of `--header` flag will be more and more uncommon.
+
+
+# Did I get out of trouble?
+
+> “Enough madness? Enough? And how do you measure madness? - The Joker” 
+
+
+## PC specs
+
+-   Motherboard: **Abit IP35**
+-   CPU: **Intel(R) Xeon(R) X5460 @ 3.16GHz 4 cores**
+-   Memory: **DDR2 4GiB @ 800MHz**
+-   HDD: **Seagate Baracuda** x 2 **RAID0**
+
+This is my personal rig, nothing fancy here. A snapshot of the bench-marking code is below, you can see the full version is [here](https://github.com/BontaVlad/nimtga/blob/master/benchmark.py).
+
+{% highlight python %}
+
+    import os
+    from subprocess import call
+    
+    BASE_PATH = os.path.join(os.getcwd(), 'images')
+    
+    def st_time(func):
+        from functools import wraps
+        import time
+    
+        @wraps(func)
+        def st_func(*args, **kwargs):
+            t1 = time.time()
+            func(*args, **kwargs)
+            t2 = time.time()
+            return t2 - t1
+    
+        return st_func
+    
+    @st_time
+    def cpython(image_path):
+        from pyTGA.measure import main
+        return main(image_path)
+    
+    @st_time
+    def pypy(image_path):
+        return call(["pypy", "pyTGA/measure.py", image_path])
+    # ...
+    
+    # start the x axis at 0
+    x = [0, 15, 150, 512, 1024, 2048, 4096]
+    tests = [cpython, pypy, nuitka, nim, pymod_nim]
+    images = ["pie_15_11.tga", "pie_150_113.tga",
+              "pie_512_384.tga", "pie_1024_768.tga",
+              "pie_2048_1536.tga", "pie_4096_3072.tga"]
+    
+    for t in tests:
+        res = [0, ]    # 0 because we want to start from the same point on both axis
+        for image in images:
+            image_path = os.path.join(BASE_PATH, image)
+            # res will be ploted with matplotlib
+            res.append(t(image_path))
+            print "benchmarking: {} with size: {}".format(t.__name__, image)
+
+{% endhighlight %}
+
+
+## Results
+
+![img](//i.imgur.com/x5369Sh.png)
+As expected cPython is the slowest and Nim version is the fastest. Nuitka seems a good compromise between ease of use and speed improvements and I see it as a good candidate for a lot of performance problems. 
+
+
+## Detail view on the fastest three
+
+![img](//i.imgur.com/AXqugom.png)
+Numpy is the fastest interpreter around, runs pretty fast compared to vanilla python. Another useful measurement would have been memory consumption but this is homework for anyone who is interested in this regard, just leave you're findings in the comments bellow(pretty please!).
+
+
+## Detail view on small execution time
+
+![img](//i.imgur.com/Z8dDzYZ.png)
+Here you can clearly see the warm up time required for pypy.
+
+
+# Hello, is it Nim you're looking for?
+
+> “True love is finding someone whose demons play well with yours” ― The Joker Batman Arkham City
+
+For an great elevator pitch about Nim head over to [nim-lang.org](https://nim-lang.org/)(nim homepage). Another good resource for programming in general is [hookrace.net](https://hookrace.net/) and nim especially, for begining I would suggest [What is special about nim?](https://hookrace.net/blog/what-is-special-about-nim/), [What makes Nim practical?](https://hookrace.net/blog/what-makes-nim-practical/) and lastly [Conclusions on Nim!](https://hookrace.net/blog/conclusion-on-nim/). But do not stop here, more advance topic await: [Introduction to metraprogramming in Nim](https://hookrace.net/blog/introduction-to-metaprogramming-in-nim/), [NimEs: a NES emulator in Nim](https://hookrace.net/blog/nimes/), [Writing a 2d platform game in Nim with SDL2](https://hookrace.net/blog/writing-a-2d-platform-game-in-nim-with-sdl2/), and many more.
+If you are to lazy to check them out just remember these things:
+
+
+## What is Nim?
+
+-   new system programming language
+-   compiles to C
+-   garbage collection + manual memory management
+-   thread local garbage collection
+-   design goals: efficient, expressive, elegant
+
+
+## Goals
+
+-   as fast as C
+-   as expressive as Python
+-   as extensible as Lisp
+
+
+## Uses of Nim
+
+-   web development
+-   games
+-   compilers
+-   operating system development
+-   scientific computing
+-   scripting
+-   command line applications
+-   UI applications
+-   And lots more!
+
+
+# Bonus
+
+I also did a presentation at my local python meetup group [RoPython](http://ropython.ro/). Here is a [video](https://www.youtube.com/watch?v=EYy8ECaA9gU&index=2&list=PL2Arun8D--P_5LB_S08og6aqgM8KZO1Wn)(in romanian but slides are in english), and the corresponding [slides](https://cdn.rawgit.com/BontaVlad/nimtga/efce7393/presentation/to_c_or_not_to_c_presentation.html).
+
+As always if you find some mistakes or if you have any suggestions/constructive criticism please leave a comment. Since there are so few, I always read them!
+
