@@ -1,0 +1,45 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil -:nil
+---
+layout: post
+title: Quick tip profiling or inspecting python/Django code
+tags: python django performance
+comments: true
+---
+
+Let's take a quick look at some tools that could make inspecting/profiling complicated or unfamiliar python a bit more pleasent. 
+
+There are a big number of ways to do the above but I keep comming back to these two(Graphiz and pprofile) because of how easy it is to get stuff done.
+---
+
+#+CAPTION: Image credits to www.martianpictures.com
+#+NAME:   turtle www.martianpictures.com
+#+ATTR_HTML: :width 40px
+[[http://i.imgur.com/LLp11KJ.png]]
+
+#+TOC: headlines
+
+* Profiling
+#+BEGIN_QUOTE
+#TODO: profiling quote, check my facebook page for one from jonathan
+#+END_QUOTE
+
+TODO: Write about the previous blog post about profiling
+Write why you chose to write about the two tools
+TODO: find more sinonims for tools because this is getting repetitive
+Start with Graphiz for visual hook
+Talk about the structure, what those color accutally mean, talk about call count.
+
+Get to pprofile. Talk where to get it, read more of it's documentation, talk about kcachegrind, or better yet qcachegriing. Talk about RunSnakeRun, other ways to get here, cprofile with some script of turning default output to qtcachegring output. Talk about general interface, options, call graph, why it is so useful, and the cool line profiler, all baked in.
+
+BONUS:
+Quckly talk about the dissapoiment with some profiling tutorail because thy only show how to profile a single file script and leave you hanging. 
+First find if the views are indeed slow, slow can be a relative term, if so which one are below the accepted threshold. Once discovered check the sql queries, that could be the problem right there, if not continue.
+Talk about manual simulating trafic, automatic testing and better yet locust.io scripts to generate complicated hight loads of trafic.
+
+Show graphiz drawing a call stack for a get view into the django appp. Show if you use django class based views to either use the contex manager to isolate portions of the code or overload the disptatch method and insert the code there.
+
+Do the same thing with pprofile, and walkthrough the interface a bit with a few screen shots.
+
+Talk about django silk, if the above is worth it or not.
+That's all folsks.
