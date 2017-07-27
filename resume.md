@@ -21,9 +21,9 @@ permalink: /resume/
 ### Programming Languages
 ------------
 
-- Great with Python, Javascript, HTML, CSS/Sass, SQL
+- Great with Python, Javascript, HTML, CSS/Sass, SQL, Nim
 - Can operate in Bash, Java, C#
-- Basic knowledge of Erlang, Elixir, Rust, Go, Nim
+- Basic knowledge of Erlang, Elixir, Rust, Go
 
 <br/>
 
@@ -68,8 +68,24 @@ permalink: /resume/
 
 # Experience
 
+### Freelancer
+*August 2016 – Present | Cluj County, Romania*
+
+As a self-employed, reliable, and highly experienced Freelancer with expertise in web-based applications, data aquisition software, automation and testing software, I am certain you will find my skills and talents to be of value. From consulting with clients and developing initial ideas and concepts to managing all facets of projects and coordinating with cross-functional team members, my experience has prepared me to excel in this line of work. 
+<br/>
+
+**Freelance projects that I worked on:**
+
+* #### [RubiconSnap](https://snap.rubiconglobal.com/)
+> Use RubiconSnap to analyze youre trash for recyclables and savings.
+<br/>
+> **Worked with: Django, Rest-framework, Redis, AWS, Caffe**
+
+* #### Several confidential ones
+> **Worked with: Scrapy, Rest-framework, Redis, AWS, Celery, Gevent**
+
 ### Spyhce
-*March 2014 – Present | Cluj County, Romania*
+*March 2014 – August 2016 | Cluj County, Romania*
 
 With Spyhce, I am part of a team of developers and designers that specializes in
 creating web-based applications for clients all around the world.
@@ -79,7 +95,7 @@ and **javascript**(AngularJs, Jquery).
 
 **Projects at Spyhce that I worked on:**
 
-* #### Confidential
+* #### [Bet Informed](https://betinformed.com/)
 > The project is a statistic platform for betting enthusiasts. Users can buy
 > widgets for several dashboards and teams with game statistics in order to make
 > better bets. Second part of the application involved aggregating match
@@ -99,7 +115,7 @@ and **javascript**(AngularJs, Jquery).
 <br/>
 > **Worked with: Agile, Django, All-Auth, Rest-framework, Redis, AngularJs**
 
-* #### 8vance
+* #### [8vance](https://8vance.com/)
 > 8vance provides companies and candidates with the big picture of their
 > individual job- and labour market. This will help them to avoid uncertainty,
 > anticipate the future, take better and faster decisions and just be more
@@ -131,7 +147,7 @@ and **javascript**(AngularJs, Jquery).
 <br/>
 > **Worked with: ElasticSearch, Kibana, Rest-framework, Haystack**
 
-* #### Spyhce Website
+* #### [Spyhce Website](http://spyhce.com/)
 > Responsibilities: Mentoring a 2 person internship team.
 <br/>
 > **Worked with: Django, CSS, Javascript, Django-admin**
