@@ -11,7 +11,7 @@ permalink: /resume/
 ### Tools
 --------
 
-- Neovim, Tmux, Unix shell environments
+- Neovim, Tmux, Unix shell environments, Emacs
 - Git, Github, Bitbucket
 - GNU/Linux(Ubuntu, Arch), Windows
 - Dvorak keyboard layout
@@ -45,6 +45,8 @@ permalink: /resume/
 - Ionic, Cordova
 - Logstash, Kibana
 - Nose, Markdown
+- Docker, Docker-compose
+- OpenGL
 
 <br/>
 
