@@ -13,9 +13,9 @@ permalink: /resume/
 ### Programming Languages
 ------------
 
-Python - used mainly in web development with Django as my main web framework and Cython for the extra performance
-JavaScript - just client-side, I like to use nicer languages on the server
-Nim - my go-to language for personal/fun projects. Would love to use it professionally.
+- **Python:** used mainly in web development with Django as my main web framework and Cython for the extra performance
+- **JavaScript:** just client-side, I like to use nicer languages on the server
+- **Nim:** my go-to language for personal/fun projects. Would love to use it professionally.
 
 <br/>
 
