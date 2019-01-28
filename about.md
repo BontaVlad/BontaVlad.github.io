@@ -4,10 +4,15 @@ title: About
 permalink: /about/
 ---
 
-<img src="http://i.imgur.com/WsDQg3z.jpg" title="Hello!  Is it me you're looking for?" />
+<img src="https://i.imgur.com/ngxC8Se.jpg" title="Hello!  Is it me you're looking for?" />
 <blockquote>
 Fail fast, fail early, fail often!
 </blockquote>
 
-At some point I will add a description but that day is not today, maybe tomorrow
-but for sure not today.
+I am a software developer with 6 years of experience – mostly in web related projects running on Linux.
+
+Professionally, I gravitate around Python, Django and Javascript(client side).
+
+My open-source projects vary from the usual Django apps / Python wrappers / etc. to the genuinely interesting Nim issues or Nim related projects one of them being nimpy(a Python - Nim bridge).
+
+I love hosting presentations at my local Python meetup group, and when the stars align, I publish an article on my personal blog.

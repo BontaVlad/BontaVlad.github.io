@@ -8,22 +8,14 @@ permalink: /resume/
 
 # Skills <a href="javascript:window.print()"><i class="resume-print icon-print"></i></a>
 
-### Tools
---------
-
-- Neovim, Tmux, Unix shell environments, Emacs
-- Git, Github, Bitbucket
-- GNU/Linux(Ubuntu, Arch), Windows
-- Dvorak keyboard layout
-
 <br/>
 
 ### Programming Languages
 ------------
 
-- Great with Python, Javascript, HTML, CSS/Sass, SQL, Nim
-- Can operate in Bash, Java, C#
-- Basic knowledge of Erlang, Elixir, Rust, Go
+Python - used mainly in web development with Django as my main web framework and Cython for the extra performance
+JavaScript - just client-side, I like to use nicer languages on the server
+Nim - my go-to language for personal/fun projects. Would love to use it professionally.
 
 <br/>
 
@@ -36,44 +28,12 @@ permalink: /resume/
 
 <br/>
 
-### Web Frameworks, Generators, Notable Libraries
-------------
-
-- Django, Django Rest framework, Allauth
-- Celery
-- Swagger
-- Ionic, Cordova
-- Logstash, Kibana
-- Nose, Markdown
-- Docker, Docker-compose
-- OpenGL
-
-<br/>
-
-### Frontend Libraries and Frameworks
-------------------------------------
-- Jquery
-- AngularJs
-- Lodash.js/Underscore.js
-- Gulp
-- Bower
-- Candidate ES6 functionality
-
-<br/>
-
-### Databases / Stores
-------------------------------------
-- PostgreSQL, MySQL, MS SQL Server
-- Redis, Memcached, ElasticSearch
-
-<br/>
-
 # Experience
 
 ### Freelancer
 *August 2016 – Present | Cluj County, Romania*
 
-As a self-employed, reliable, and highly experienced Freelancer with expertise in web-based applications, data aquisition software, automation and testing software, I am certain you will find my skills and talents to be of value. From consulting with clients and developing initial ideas and concepts to managing all facets of projects and coordinating with cross-functional team members, my experience has prepared me to excel in this line of work. 
+As a self-employed, reliable, and highly experienced Freelancer with expertise in web-based applications, data acquisition software, automation and testing software. 
 <br/>
 
 **Freelance projects that I worked on:**
@@ -84,7 +44,7 @@ As a self-employed, reliable, and highly experienced Freelancer with expertise i
 > **Worked with: Django, Rest-framework, Redis, AWS, Caffe**
 
 * #### Several confidential ones
-> **Worked with: Scrapy, Rest-framework, Redis, AWS, Celery, Gevent**
+> **Worked with: Scrapy, Rest-framework, Redis, AWS, Celery, Gevent, Visa Transaction Control**
 
 ### Spyhce
 *March 2014 – August 2016 | Cluj County, Romania*
@@ -170,8 +130,3 @@ and **javascript**(AngularJs, Jquery).
 --------------------------
 
 2012 - 2015 - Bachelor of Computer Science
-
-### Colegiul National Simion Barnutiu - Simleu Silvaniei
---------------------------
-
-2003 - 2007 - High School Diploma Math - Computer Science
