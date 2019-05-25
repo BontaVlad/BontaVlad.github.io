@@ -76,7 +76,12 @@ This was my first impulsive plane ticket purchase, on Facebook I saw that some f
 
 **Marcus Aurelius** once said: **"Our life is what our thoughts make of it.**, I think things will work out!
 
+
+**See you space cowboy!**
+
+
+
+
 PS: I'm keeping my promise, I will publish this post, but articles can be edited, improved, changed. 
 Feel free to let me know if you see some spelling mistakes, wrongdoings, something completely wrong!
 
-**See you space cowboy!**
