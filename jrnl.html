@@ -1,11 +1,11 @@
 ---
 layout: default
-homepage: True
-permalink: /
+title: Sergiu-Vlad Bonta's non-secret journal
+permalink: /jrnl/
 ---
 
 {% for post in site.posts %}
-    {% unless post.categories contains 'jrnl' %}
+    {% if post.categories contains 'jrnl' %}
         <div class=post>
             {% if post.feature %}
             <p class=feature-image>
@@ -18,5 +18,5 @@ permalink: /
             </div>
             {% include post-meta.html %}
         </div>
-    {% endunless %}
+    {% endif %}
 {% endfor %}
