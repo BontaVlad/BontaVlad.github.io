@@ -11,25 +11,7 @@ Caldura, praf si putoare, o dimineata normala in scoala de gladiatori Ludus Ursu
 
 ![img](https://i.imgur.com/e8bLFvi.jpg "Fight")
 
-# Jugula!
-
-Tanarul gladiator dormi prost, nu doarme niciodata bine inaintea unei batali.
-Gandul ii sta la mirosul de sudoare, soarele arzator, gustul prafului inbibat in sange.
-Ar fi stat mai mult in pat dar oricum trebuie sa se pise si antrenameltul incepe in curand. 
-
-"Retiarius a luat plasa", isi spuse zambind usor.
-Ultima lupta il domina. Inca simpte caldura sangelui care ii curge pe mana, inca simpte greutatea trupului mort.
-
-"I-am spus lui Memnius ca prea ii obisnuit el cu lupte demonstrative", isi sopteste in timp ce isi pune coiful de antrenament.
-
-"Altul nou!" si da din umeri.
-
-Antrenamentul incepe si este greu, "Greu la antrenament, usor in lupta", isi aminti de vorba unui legionar. Obosit, priveste in gol. Mana inca il doare, taietura adanca facuta de Retiarius se vindeca greu.
-
-
-
-
----
+# Gallus
 
 Lumea acestui Secutor se invarte in jurul scolii. Nascut aici, crescut aici, lumea de afara ii este straina, ciudata si de nesuportat. Tot ce e familiar este in spatele acestor ziduri, tot ce e normal este aici. 
 Pentru acest gladiator, viata incepe si se termina in arena.
