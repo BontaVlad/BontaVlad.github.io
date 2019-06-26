@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Ludus Ursus Nigrus - Oameni - Germanicus
+title: Ludus Ursus Nigrus - Oameni - Gallus
 comments: true
 categories: jrnl
 ---
 
-Caldura, praf si putoare, o dimineata normala in scoala de gladiatori Ludus Ursus Nigrus. Este devreme, Germanicus deschide ochii, o noua zi incepe.
+Caldura, praf si putoare, o dimineata normala in scoala de gladiatori Ludus Ursus Nigrus. Este devreme, Gallus deschide ochii, o noua zi incepe.
 
 ---
 
@@ -22,16 +22,23 @@ Ultima lupta il domina. Inca simpte caldura sangelui care ii curge pe mana, inca
 
 "I-am spus lui Memnius ca prea ii obisnuit el cu lupte demonstrative", isi sopteste in timp ce isi pune coiful de antrenament.
 
-"Imi vei lipsi prieten bun!" si da din umeri.
+"Altul nou!" si da din umeri.
+
+Antrenamentul incepe si este greu, "Greu la antrenament, usor in lupta", isi aminti de vorba unui legionar. Obosit, priveste in gol. Mana inca il doare, taietura adanca facuta de Retiarius se vindeca greu.
+
+
+
+
+---
 
 Lumea acestui Secutor se invarte in jurul scolii. Nascut aici, crescut aici, lumea de afara ii este straina, ciudata si de nesuportat. Tot ce e familiar este in spatele acestor ziduri, tot ce e normal este aici. 
 Pentru acest gladiator, viata incepe si se termina in arena.
 
-Germanicus este singurul nascut in scoala. Are multi tati gladiatori, dar o singura mama. Nu isi aduce aminte multe de mama sa, mai mult din povesti. 
+Gallus este singurul nascut in scoala. Are multi tati gladiatori, dar o singura mama. Nu isi aduce aminte multe de mama sa, mai mult din povesti. 
 
 A murit subit cand era el mic, din povestile celor batrani mama sa lucra la bucatarie. Pentru tanara celtica, frumuseata ei a fost un blestem, totusi din toata suferinta sa nascut un baiat sanatos. Copilul a fost iubit, si asta ia asigurat un loc in scoala.
 
-Sufletist, prietenos, loial, este respectat de cei din jur. Insa Germanicus, nu cunoaste lumea exterioara si obiceiurile ei. Moralitatea lui este ghidata de arena. Cu zambetul pe buze il va decapita pe cel invins si tot cu zambetul pe buze isi va accepta infrangerea. Destinul unui gladiator este sa incante multimea, sa lupte spectaculos sau sa moara, nimic altceva. Prieteni, frati, parinti, sunt cuvinte straine arenei.
+Sufletist, prietenos, loial, este respectat de cei din jur. Insa Gallus, nu cunoaste lumea exterioara si obiceiurile ei. Moralitatea lui este ghidata de arena. Cu zambetul pe buze il va decapita pe cel invins si tot cu zambetul pe buze isi va accepta infrangerea. Destinul unui gladiator este sa incante multimea, sa lupte spectaculos sau sa moara, nimic altceva. Prieteni, frati, parinti, sunt cuvinte straine arenei.
 
 "Fiecare nou inceput vine din sfarsitul altui inceput.", isi spune inainte de fiecare lupta, si asta il face extrem de periculos!
 
