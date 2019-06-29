@@ -20,7 +20,7 @@ Pentru acest gladiator, viata începe si se termina in arena.
 
 Gallus este singurul născut in scoală. Nu își aduce aminte multe de mama sa, fiind prea mic când a murit, știa doar ca lucra la bucătărie. Are multi tați gladiatori, dar o singură mama.
 
-Pentru tânăra celtica, frumusețea ei a fost un blestem, totuși din toată suferința sa născut un băiat sănătos. Copilul a fost iubit, si asta ia asigurat un loc in *ludus**.
+Pentru tânăra celtica, frumusețea ei a fost un blestem, totuși din toată suferința s-a născut un băiat sănătos. Copilul a fost iubit, si asta ia asigurat un loc in *ludus**.
 
 Sufletist, prietenos, loial, este respectat de cei din jur. Însa Gallus, nu cunoaște lumea exterioara si obiceiurile ei. Moralitatea lui este ghidata de arena. Cu zâmbetul pe buze îl va decapita pe cel învins si tot cu zâmbetul pe buze isi va accepta înfrângerea. Destinul unui gladiator este sa încânte mulțimea, sa lupte spectaculos sau sa moara, nimic altceva. Prieteni, frați, părinti, sunt cuvinte străine arenei.
 
