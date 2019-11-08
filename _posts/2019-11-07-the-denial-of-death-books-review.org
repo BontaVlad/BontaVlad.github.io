@@ -1,0 +1,123 @@
+#+STARTUP: showall
+#+OPTIONS: toc:nil -:nil
+---
+layout: post
+title: The denial of death books review series
+comments: true
+categories: jrnl
+tags: denial-of-death
+---
+“The real world is simply too terrible to admit.
+it tells man that he is a small trembling animal who will someday decay and die.
+Culture changes all of this,makes man seem important,vital to the universe.
+immortal in some ways” ― Ernest Becker
+
+---
+
+#+CAPTION: Gustav Klimt Death and Life 1915
+#+NAME:   Gustav Klimt Death and Life 1915
+https://i.imgur.com/xQg5co4.jpg
+
+* Reason
+  
+I'm finally gathering my courage to start something that I wanted to do eons ago, and that is book reviews. Since my reading usually revolves around a theme, organizing the review's in a series seems like the proper way to do it.
+ 
+To keep things interesting, every run will be accompanied by a painting that represents the current motif.
+
+I'm doing this for selfish reasons, I found that having to write about a book forces me to take notes, make bookmarks, pay attention. I read slower than usual, but I gain so much more from the whole process.
+
+Mind you, this will not be a critique from a knowledgeable person, far from it. This is me trying to make sense of what the hell I read.
+
+* Painting
+  
+  Death and Life by Gustav Klimt is one of my favorite paintings and it fits so well with the current theme. 
+
+On the left side, we have the colorful, cheerful, almost seductive death. He so dearly holds a brutal and crude weapon, the club, eagerly waiting to strike. The anticipation is almost palpable.
+  
+On the right we have life, full of bright colours, the new, the young, the old, floating in a dream like state, asleep, completely ignorant to what lurks so close to them. This deep slumber guards them from the worries of death.
+
+Everybody sleeps, except two.
+
+First one is the baby, the embodiment of naivety. He requires no sleep, for he is to young to perceive death, to raw to fear it.
+
+Then you have this young beautiful woman, bravely starring directly at death, fully aware of what lies ahead, smiling at the inevitable, almost embracing herself with desire. By acknowledging death, the woman is fully awake!
+
+* Motif
+  
+The main subject of these books are revolving around the idea of death, man's refusal to acknowledge his own mortality. From the fear of death comes existential anxieties, neurosis, the fear of living, the birth of "self-esteem", the "ego", all efforts at anxiety-manipulation. 
+
+Then comes faith, dependency on others for their sense of self, the need of heroism, the pursuit of immortality, the will to meaning, the quest for power, all stem from the idea that everything will eventually end.
+
+#+BEGIN_QUOTE
+“For every individual, the whole complex business of living, this whole fascinating, agonizing, thrilling, boring, reassuring and frightening business, with all its moments of simple peace and complex turmoil, will someday, inescapably, end.” -- Ernest Becker
+#+END_QUOTE
+
+The cultural anthropologist Ernest Becker set out to explain why human beings behave the way we do, and his deep-thinking, multidisciplinary approach earned him a Pulitzer Prize in 1974.
+
+One of my favorite Ernest Becker quotes that sums up perfectly the motif of the series:
+
+#+BEGIN_QUOTE
+“The aim of life is to live it intensely, to be fully born, to be fully awake. To emerge from the ideas of infantile grandiosity into the conviction of one’s real though limited strength; to be able to accept the paradox that every one of us is the most important thing there is in the universe – and at the same time not more important than a fly or a blade of grass. To be able to love life, and yet to accept death without terror; to tolerate uncertainty about the most important questions with which life confronts us – and yet to have faith in our thought and feeling, inasmuch as they are truly ours. To be able to be alone, and at the same time one with a loved person, with every brother on this earth, with all that is alive; to follow the voice of our conscience, the voice that calls us to ourselves, yet not to indulge in self hate when the voice of conscience was not loud enough to be heard and followed. The mentally healthy person is the person who lives by love, reason, and faith, who respects life, his own, and that of his fellow man.”
+#+END_QUOTE
+ 
+* The books
+  
+** Ernest Becker -- The Birth and Death of Meaning
+   
+#+CAPTION: The Birth and Death of Meaning
+#+NAME:   The birth and death of meaning
+#+ATTR_HTML: :width 100px
+ https://images-na.ssl-images-amazon.com/images/I/51BnOFP4iuL._SX319_BO1,204,203,200_.jpg
+
+Amazon description:
+#+BEGIN_QUOTE
+Perhaps the best and most succinct book on the nature and evolution of the human, the human mind, human nature, the source of human wants, needs and desire, and how most of this goes unseen by humans. Becker uses his own scientific investigation results, and successfully synthesizes the insights, results and theories of others to explain why mankind is the way it is.
+#+END_QUOTE
+
+This is the first book I read from Ernest Becker. I will write a full blog post about the book, I'm eager to write about how humans ended up forming a "self-esteem" and why is this such an important part of our lives, how the "ego" guards us from anxiety and so on. I highly recommend it.
+ 
+** Ernest Becker -- The Denial of Death
+#+NAME: The denial of Death
+#+ATTR_HTML: :width 100px
+https://images-na.ssl-images-amazon.com/images/I/519ZmJ9flmL._SX326_BO1,204,203,200_.jpg
+
+Amazon description:
+#+BEGIN_QUOTE
+Winner of the Pulitzer prize in 1974 and the culmination of a life's work, The Denial of Death is Ernest Becker's brilliant and impassioned answer to the "why" of human existence. In bold contrast to the predominant Freudian school of thought, Becker tackles the problem of the vital lie -- man's refusal to acknowledge his own mortality. In doing so, he sheds new light on the nature of humanity and issues a call to life and its living that still resonates more than twenty years after its writing.
+#+END_QUOTE
+
+Until now this is my favorite book from the series, I still have to read Escape from Evil, maybe that will top this. This is one of the most important books I ever read. Expect a full blown article about this. Pick this one up!
+
+** Ernest Becker -- Escape from Evil
+   
+#+NAME: Escape from Evil
+#+ATTR_HTML: :width 100px
+https://images-na.ssl-images-amazon.com/images/I/41%2B2T3KIRML._SX322_BO1,204,203,200_.jpg
+
+Amazon description:
+#+BEGIN_QUOTE
+Examines men's efforts to escape from the fear of death by performing acts of human wickedness through socially-sanctioned institutions
+#+END_QUOTE
+
+I'm planning to read this book right after I finish The Denial of Death.
+
+** Sheldon Solomon, Jeff Greenberg, Tom Pyszczynski -- The Worm at the Core
+   
+
+#+NAME: Worm at the Core
+#+ATTR_HTML: :width 100px
+https://images-na.ssl-images-amazon.com/images/I/41GL9Elmb6L._SX327_BO1,204,203,200_.jpg
+
+#+BEGIN_QUOTE
+The Worm at the Core is the product of twenty-five years of in-depth research. Drawing from innovative experiments conducted around the globe, Solomon, Greenberg, and Pyszczynski show conclusively that the fear of death and the desire to transcend it inspire us to buy expensive cars, crave fame, put our health at risk, and disguise our animal nature. The fear of death can also prompt judges to dole out harsher punishments, make children react negatively to people different from themselves, and inflame intolerance and violence.
+#+END_QUOTE
+
+While I think this is the weakest book from the series, it's a easy read and very useful because it tries more or less to summarize and prove the ideas taken from the books that I listed above. Don't be discouraged by the repetition or some boring case studies, at the end it has some strong chapters that makes this book a recommended read.
+
+* Conclusion
+#+BEGIN_QUOTE
+“Of all people only those are at leisure who make time for philosophy, only those are really alive. For they not only keep a good watch over their own lifetimes, but they annex every age to theirs.”
+― Seneca, On the Shortness of Life 
+#+END_QUOTE
+
+*See you space cowboy!*
